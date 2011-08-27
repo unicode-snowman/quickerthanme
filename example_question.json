@@ -1,9 +1,30 @@
-{
-    "question_id": 213,
-    "user_id": 15,
-    "question": "Reverse any string: 'dlrow olleh'.",
-    "input": "sirhc ih",
-    "solution": "function main(input) { return [].slice.call(input).reverse(); }",
-    "answer": "hi chris",
-    "created": "2011-08-26T06:06:00.156723-0500"
-}
+[
+    {
+        "question": "Reverse any string: 'dlrow olleh'.",
+        "input": "sirhc ih",
+        "solution": "[].slice.call(input).reverse();",
+        "output": "hi chris",
+        "comparison_type": "strict"
+    },
+    {
+        "question": "For a given number of iterations, calculate the result of the Fibonacci sequence.",
+        "input": "28",
+        "solution": "function fib(n) { return n < 2 ? n : fib(n-1) + fib(n-2); } fib(input)",
+        "output": "317811",
+        "comparison_type": "strict"
+    },
+    {
+        "question": "Return all unique elements in a given array.",
+        "input": "[1, 2, 3, 2, 3, 2, 4, 5, 6, 3, 4, 7, 9]",
+        "solution": "var output = {}; input.map(function(value) { output[value] = true; }); return Object.keys(output)",
+        "output": "[1, 2, 3, 4, 5, 6, 7, 9]",
+        "comparison_type": "set"
+    },
+    {
+        "question": "Convert a given string to Rot14 (lowercase letters only).",
+        "input": "this is probably too easy",
+        "solution": "input.split('').map(function(letter) { var raw = letter.charCodeAt(); if(raw < 97 || raw > 122) { return letter; } var converted = raw + 14; if(raw <= 122 && converted > 122) { return String.fromCharCode(converted - 26); } return String.fromCharCode(converted); }).join('');",
+        "output": "hi chris",
+        "comparison_type": "strict"
+    }
+]
