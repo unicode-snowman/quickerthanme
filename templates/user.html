@@ -1,5 +1,52 @@
 {% extends "base.html" %}
 
+{% block title %}{{ target_user.name }}'s Profile - {{ block.super }}{% endblock %}
+
 {% block content %}
-  {{ target_user.name }}
+    <div class="generic-wrapper">
+        <div class="mega-gravatar-wrapper">
+            <img src="http://www.gravatar.com/avatar/{{ target_user.gravatar_id }}" alt="{{ target_user.name }}" class="mega-gravatar-image">
+        </div>
+
+        <div id="user_info">
+            {% if req.user.pk == target_user.pk %}
+            <h2>Your Profile</h2>
+            {% else %}
+            <h2>{{ target_user.name }}</h2>
+            {% endif %}
+
+            <div>
+                <a href="https://github.com/{{ target_user.screen_name }}">https://github.com/{{ target_user.screen_name }}</a>
+            </div>
+        </div>
+
+        <div>
+            <h3>Stats</h3>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Total Races:</th>
+                        <td class="numeric">{{ target_user.total_races }}</td>
+                    </tr>
+                    <tr>
+                        <th>Races Won:</th>
+                        <td class="numeric">{{ target_user.races_won }}</td>
+                    </tr>
+                    <tr>
+                        <th>Questions Solved:</th>
+                        <td class="numeric">{{ target_user.questions_solved }}</td>
+                    </tr>
+                    <tr>
+                        <th>Average Time To Solve A Question:</th>
+                        <td class="numeric">{{ target_user.avg_question_time }}</td>
+                    </tr>
+                    <tr>
+                        <th>Questions Created:</th>
+                        <td class="numeric">{{ target_user.questions_created }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

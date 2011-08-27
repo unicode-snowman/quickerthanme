@@ -13,6 +13,7 @@ ul { padding-left: 20px; }
 
 table { border-collapse: collapse; width: 100%; margin: 0 20px;}
 table th, table td { padding-right: 10px; }
+table th.numeric, table td.numeric { text-align: right; }
 
 header, #main, footer { text-align: center; }
 header { background-color: #666666; height: 50px; padding-top: 10px; padding-bottom: 10px; border-bottom: solid 2px #333333;
