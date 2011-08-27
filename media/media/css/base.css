@@ -7,18 +7,42 @@ img { border-width: 0; display: block; }
 section, aside, header, footer { display: block; }
 label { display:block; font-weight: bold; }
 input[type="text"], textarea { padding: 5px; }
+button { padding: 5px 20px; border-radius: 10px; border-style: solid; border-width: 2px; margin: 0 5px 5px; color: #FFFFFF; font-weight:bold; font-size: 16px; text-shadow: #888888 1px 1px 2px; }
 ul { padding-left: 20px; }
+
+table { border-collapse: collapse; width: 100%; margin: 0 20px;}
+table th, table td { padding-right: 10px; }
 
 header, #main, footer { text-align: center; }
 header { background-color: #666666; height: 50px; padding-top: 10px; padding-bottom: 10px; border-bottom: solid 2px #333333;
-background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555555), to(#666666));
-background-image: -webkit-linear-gradient(top, #555555, #666666);
-background-image: -moz-linear-gradient(top, #555555, #666666);
-background-image: -ms-linear-gradient(top, #555555, #666666);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555555), to(#666666));
+    background-image: -webkit-linear-gradient(top, #555555, #666666);
+    background-image: -moz-linear-gradient(top, #555555, #666666);
+    background-image: -ms-linear-gradient(top, #555555, #666666);
 }
 #main { clear: both; }
 footer { background-color: #FFFFFF; border-top: solid 2px #333333; clear: both; padding-top: 20px; padding-bottom: 100px; }
 .centerriffic { width: 900px; position: relative; margin: auto; text-align: left; }
+
+button.green {
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00AA00), to(#00DD00));
+    background-image: -webkit-linear-gradient(top, #00AA00, #00DD00);
+    background-image: -moz-linear-gradient(top, #00AA00, #00DD00);
+    background-image: -ms-linear-gradient(top, #00AA00, #00DD00);
+    border-color: #006600;
+}
+button.green:hover {
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00CC00), to(#00FF00));
+    background-image: -webkit-linear-gradient(top, #00CC00, #00FF00);
+    background-image: -moz-linear-gradient(top, #00CC00, #00FF00);
+    background-image: -ms-linear-gradient(top, #00CC00, #00FF00);
+}
+button.green:active {
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00FF00), to(#00CC00));
+    background-image: -webkit-linear-gradient(top, #00FF00, #00CC00);
+    background-image: -moz-linear-gradient(top, #00FF00, #00CC00);
+    background-image: -ms-linear-gradient(top, #00FF00, #00CC00);
+}
 
 header a, header a:visited, header a:hover { color: #FFFFFF; }
 #logo { float: left; width: 200px; }

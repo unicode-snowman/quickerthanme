@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Race #{{ race.pk }} Waiting Room - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="generic-wrapper">
+        <h2>Race #{{ race.pk }} Waiting Room</h2>
+
+        <form method="POST" action="">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Players</th>
+                        <th>Ready</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="waiting-player-1">
+                        <td>You</td>
+                        <td>Ready</td>
+                    </tr>
+                    <tr id="waiting-player-2">
+                        <td>Open Slot</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr id="waiting-player-3">
+                        <td>Open Slot</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr id="waiting-player-1">
+                        <td>Open Slot</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><button name="start" class="green">Start!</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+{% endblock %}
