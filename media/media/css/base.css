@@ -1,1 +1,54 @@
-h1 { font-size:14px; }
+* { margin: 0; padding: 0;}
+
+body { font-family: Helvetica sans-serif; background-image: url('../img/bg.png'); color: #333333; }
+h1, h2, h3 { font-family: Georgia, Times New Roman, serif; margin-bottom: 10px; }
+img { border-width: 0; display: block; }
+/* Because HTML5. */
+section, aside, header, footer { display: block; }
+
+header, #main, footer { text-align: center; }
+header { background-color: #666666; height: 50px; padding-top: 10px; padding-bottom: 10px; border-bottom: solid 2px #333333;
+background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555555), to(#666666));
+background-image: -webkit-linear-gradient(top, #555555, #666666);
+background-image: -moz-linear-gradient(top, #555555, #666666);
+background-image: -ms-linear-gradient(top, #555555, #666666);
+}
+#main { clear: both; }
+footer { background-color: #FFFFFF; border-top: solid 2px #333333; clear: both; padding-top: 20px; padding-bottom: 100px; }
+.centerriffic { width: 900px; position: relative; margin: auto; text-align: left; }
+
+header a, header a:visited, header a:hover { color: #FFFFFF; }
+#logo { float: left; width: 200px; }
+#logo h1 { font-size: 40px; color: #FFFFFF; text-shadow: #000000 1px 1px 2px; }
+#logo h1 a, #logo h1 a:visited, #logo h1 a:hover { color: #FFFFFF; text-decoration: none; }
+#user-details { float: right; width: 200px; }
+#user-details .big-gravatar { float: left; margin: 0 10px 0 0; }
+#user-details .big-gravatar img { border: solid 1px #FFFFFF; }
+.big-gravatar-image { height: 50px; width: 50px; }
+#user-details .username { font-size: 22px; }
+#user-details .user-meta { font-size: 16px; list-style: none; }
+#user-details .user-meta li { display: inline; margin-right: 10px; }
+
+#full-track { background-color: #333333; color: #FFFFFF; float: left; width: 200px; margin: 0 10px 30px 0; }
+#full-track h3 { font-size: 14px; margin-bottom: 5px; }
+#full-track .stats { border-bottom: solid 2px #FFFFFF; padding: 5px; }
+#track-progress { height: 400px; }
+#track-progress .track { float: left; }
+#track-progress .question { height: 40px; background-image: url('../img/track_bg.png'); background-repeat: repeat-y; width: 50px; text-align: center; }
+#track-progress .progress-dot { font-size: 100px; }
+#competitor-icons { clear: both; border-top: solid 2px #FFFFFF; }
+#competitor-icons .competitor { float: left; width: 50px; }
+.little-gravatar-image { height: 50px; width: 50px; }
+
+#content-wrapper { float: left; width: 690px; margin: 0px 0 20px 0; }
+#qa-wrapper { float: left; width: 690px; margin: 10px 0 20px 0; background-color: #FFFFFF; border-radius: 5px; }
+#question-wrapper, #answer-wrapper { float: left; width: 300px; padding: 10px 20px; }
+#question-wrapper { margin-right: 10px; }
+#answer-wrapper { border-left: dashed 2px #333333; width: 298px; }
+#answer-wrapper textarea { height: 300px; width: 300px;}
+#answer-wrapper #stupid-submit-button { display: none; }
+
+#other-competitors { clear: both; background-color: #FFFFFF; padding: 10px 20px; border-radius: 5px; }
+#other-competitors ul { list-style: none; }
+
+footer .centerriffic { text-align: center; }
