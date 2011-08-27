@@ -1,0 +1,9 @@
+{
+    "question_id": 213,
+    "user_id": 15,
+    "question": "Reverse any string: 'dlrow olleh'.",
+    "input": "sirhc ih",
+    "solution": "function main(input) { return [].slice.call(input).reverse(); }",
+    "answer": "hi chris",
+    "created": "2011-08-26T06:06:00.156723-0500"
+}
