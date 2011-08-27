@@ -1,0 +1,25 @@
+{
+    "name" :   "quickerthanme",
+    "version" :   "0.0.1",
+    "description" :   "are you quicker than me?",
+    "main" :   "index.js",
+    "directories" :   {
+        "lib"  :   ".",
+        "test"  :   "test"
+    },
+    "dependencies" :   {
+        "burrito" :   "0.2.X",
+        "ormnomnom" :   "0.0.3",
+        "pg" :   "0.5.X",
+        "escaperoute" :  "0.X.X",
+        "plate" :  "0.X.X",
+        "everyauth" :  "0.2.X",
+        "paperboy" :  "0.X.X",
+        "formidable" :  "0.1.X"
+    },
+    "repository"  :   {
+        "type"  :   "git",
+        "url"  :   "http :  //github.com/nko2/snowman.git"
+    },
+    "engine"  :   { "node"  :   ">=0.4" }
+}
