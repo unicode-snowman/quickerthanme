@@ -7,5 +7,6 @@ var ormnomnom = require('ormnomnom')
 db(ormnomnom)
 models.db_creation('default', true, function(err) {
   console.error('created db')
+  process.exit()
 })
 
