@@ -4,10 +4,13 @@
 
 {% block content %}
     <div class="generic-wrapper">
+        {% block gravatar %}
         <div class="mega-gravatar-wrapper">
             <img src="http://www.gravatar.com/avatar/{{ target_user.gravatar_id }}" alt="{{ target_user.name }}" class="mega-gravatar-image">
         </div>
+        {% endblock %}
 
+        {% block user_info %}
         <div id="user_info">
             {% if req.user.pk == target_user.pk %}
             <h2>Your Profile</h2>
@@ -19,8 +22,13 @@
                 <a href="https://github.com/{{ target_user.screen_name }}">https://github.com/{{ target_user.screen_name }}</a>
             </div>
         </div>
+        {% endblock }
 
-        <div>
+        {% block other_info %}
+        {% endblock %}
+
+        {% block stats %}
+        <div class="stats">
             <h3>Stats</h3>
 
             <table>
@@ -48,5 +56,6 @@
                 </tbody>
             </table>
         </div>
+        {% endblock %}
     </div>
 {% endblock %}
