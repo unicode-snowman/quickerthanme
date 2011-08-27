@@ -21,7 +21,7 @@ header a, header a:visited, header a:hover { color: #FFFFFF; }
 #logo { float: left; width: 200px; }
 #logo h1 { font-size: 40px; color: #FFFFFF; text-shadow: #000000 1px 1px 2px; }
 #logo h1 a, #logo h1 a:visited, #logo h1 a:hover { color: #FFFFFF; text-decoration: none; }
-#user-details { float: right; width: 200px; }
+#user-details { float: right; width: 300px; overflow: hidden; }
 #user-details .big-gravatar { float: left; margin: 0 10px 0 0; }
 #user-details .big-gravatar img { border: solid 1px #FFFFFF; }
 .big-gravatar-image { height: 50px; width: 50px; }
