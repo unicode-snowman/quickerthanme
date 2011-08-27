@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a id="start-race" href="/races/create/">Start a race!</a>
+
+    {% with user.initiated_race_set.all as your_races %}
+    <h2>Your Races</h2>
+    <ul id="your-races">
+        {% for race in your_races %}
+        <li><a href="{{ race.get_absolute_url }}">{{ race }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endwith %}
+
+{% endblock %}

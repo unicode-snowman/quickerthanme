@@ -3,12 +3,6 @@
 {% block title %}Race {{ race.pk }} - {{ block.super }}{% endblock %}
 
 {% block content %}
-        <script type="text/html" id="question_template">
-          {{ question_template|safe }}
-        </script>
-        <script type="text/javascript" src="{{ MEDIA_URL }}js/race.js"></script>
-        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-
         <div id="race">
         <div id="full-track">
             <div class="stats">
@@ -45,4 +39,14 @@
               </div>
           {% endfor %}
         </div>
+{% endblock %}
+
+{% block javascript %}
+  {{ block.super|safe }}
+  <script type="text/html" id="question_template">
+    {{ question_template|safe }}
+  </script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/race.js"></script>
+
+
 {% endblock %}
