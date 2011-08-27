@@ -47,7 +47,7 @@ exports.require_race = function(fn) {
     var args = [].slice.call(arguments)
         , self = this
 
-    Race.objects.get({"pk": race_pk}).on('data', function(race) {
+    Race.objects.get({"pk": parseInt(race_pk, 10)}).on('data', function(race) {
       args.splice(2, 1, race)
       fn.apply(self, args)
     }).on('error', function(err) {
