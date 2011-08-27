@@ -21,13 +21,21 @@ Question: {
     "created_on": "1314418690.157881"
 }
 
+COMPETITION_TYPE = [
+    "multiplayer",
+    "ghost",
+    "timetrial"
+]
+
 Competition: {
     "started_by": 1, (FK)
     "created_on": "1314418690.157881",
     "started_on": "1314418690.157881",
     "ended_on": "1314418690.157881",
+    "type": "multiplayer",
     "competitors": ManyToManyField(User),
-    "answers": ManyToManyField(Answer)
+    "answers": ManyToManyField(Answer),
+    "won_by": 1 (FK)
 }
 
 Answer: {
