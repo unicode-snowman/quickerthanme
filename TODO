@@ -6,7 +6,7 @@ Needs
 
 - Basic interface (straight HTML/simple JS)
 - Basic question set
-- Auth (GH-only?)
++ Auth (GH-only?)
 - Homepage
 - Abiltity to code
 - Store code runs
@@ -14,12 +14,14 @@ Needs
 - Penalties
 - "Race track"
 - Timed contest
+- Status modifiers
 
 
 Wants
 -----
 
 - Submit new questions
+- Clear status modifiers (w/ a fast time)
 - Time Trial (against ghosts)
 - Leaderboards
 - Short URLs
