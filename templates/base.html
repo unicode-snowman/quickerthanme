@@ -22,9 +22,10 @@
                 </div>
                 <ul class="user-meta">
                     <li><a href="{{ user.get_absolute_url }}stats/">Stats</a></li>
+                    <li><a href="/logout/">Logout</a></li>
                 </ul>
             {% else %}
-                <a href="/auth/github/">Login With GitHub</a>
+                <a href="/auth/github/" class="button github-login">Login With GitHub</a>
             {% endif %}
             </div>
         </div>
