@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+var ormnomnom = require('ormnomnom')
+  , models    = require('../lib/models')
+  , db        = require('../config/db')
+
+db(ormnomnom)
+models.db_creation('default', true, function(err) {
+  console.error('created db')
+})
+
