@@ -7,6 +7,7 @@ img { border-width: 0; display: block; }
 section, aside, header, footer { display: block; }
 label { display:block; font-weight: bold; }
 input[type="text"], textarea { padding: 5px; }
+ul { padding-left: 20px; }
 
 header, #main, footer { text-align: center; }
 header { background-color: #666666; height: 50px; padding-top: 10px; padding-bottom: 10px; border-bottom: solid 2px #333333;
@@ -57,5 +58,6 @@ header a, header a:visited, header a:hover { color: #FFFFFF; }
 .form-row { margin-bottom: 20px; }
 .form-row textarea { height: 300px; width: 300px; }
 .form-row .hint { font-style: italic; color: #888888; }
+.errors { background-color: #FF8888; border-radius: 5px; padding: 5px 10px; }
 
 footer .centerriffic { text-align: center; }

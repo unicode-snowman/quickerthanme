@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Question - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="generic-wrapper">
+        <h2>Thanks!</h2>
+
+        <p>
+            Your question has been added to the collection! You're the best!
+        </p>
+
+        <p>
+            Now go <a href="/">home</a> &amp; start a new game already!
+            Or go check out your awesome <a href="{{ user.get_absolute_url }}stats/">stats</a>!
+        </p>
+    </div>
+{% endblock %}

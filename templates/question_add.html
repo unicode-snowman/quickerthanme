@@ -6,10 +6,19 @@
     <div class="generic-wrapper">
         <h2>Add A Question</h2>
 
+        {% if errors.length %}
+            <div class="errors">
+                <ul>
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
         <form method="POST" action="" id="add-question">
             <div class="form-row">
-                <label for="id_question">Question:</label>
-                <textarea id="id_question" name="question"></textarea>
+                <label for="id_description">Question Description:</label>
+                <textarea id="id_description" name="description"></textarea>
             </div>
             <div class="form-row">
                 <label for="id_reference">Reference Implementation:</label>
