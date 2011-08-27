@@ -1,0 +1,54 @@
+User: {
+    "gh_username": "chrisdickinson",
+    "name": "Chris",
+    "gravatar_id": "",
+    "email": ""
+}
+
+QUESTION_CHOICES = [
+    ["strict", "Strictly Equal"],
+    ["set", "Contained In Set"],
+    ["float", "Float (to 6 decimal places"],
+]
+
+Question: {
+    "description": "Given a string as input, return the string in reverse.",
+    "reference": "function main(input) { return [].slice.call(input).reverse(); }",
+    "input": "sirhc ih",
+    "output": "hi chris",
+    "comparison_type": "strict", (Choice)
+    "created_by": 1, (FK)
+    "created_on": "1314418690.157881"
+}
+
+Competition: {
+    "started_by": 1, (FK)
+    "created_on": "1314418690.157881",
+    "started_on": "1314418690.157881",
+    "ended_on": "1314418690.157881",
+    "competitors": ManyToManyField(User),
+    "answers": ManyToManyField(Answer)
+}
+
+Answer: {
+    "competitor": 1, (FK)
+    "question": 1, (FK)
+    "order": 6, (Int)
+    "solution": "function main(input) { return [].slice.call(input).reverse(); }",
+    "time_taken": 32.567433, (Float)
+    "ended_on": "1314418690.157881",
+}
+
+OUTCOME_CHOICES = [
+    ["won", "Won"],
+    ["lost", "Lost"],
+    ["quit", "Quit"]
+]
+
+Outcome: {
+    "user": 1, (FK)
+    "status": "won", (Choice)
+    "ended_on": "1314418690.157881"
+}
+
+
