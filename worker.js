@@ -3,20 +3,23 @@ var burrito         = require('burrito')
   , spawn           = require('child_process').spawn
   , MAX_LIFE        = process.env.MAX_LIFE || 10000
   , modifiers       = require('./lib/modifiers')
-  , comparisons     = require('./lib/comparisons') 
+  , comparisons     = require('./lib/comparisons')
 
 // expects!
 //  - input       -- the input value to pass to the proposed solution
 //  - solution    -- the proposed solution.
 //  - comparison  -- what function to use to compare the result to the expected result one of [strict, float, set]
 //  - expected    -- the expected value (as a JSON encoded string)
-//  - modifier    -- the current modifier for the proposed solution one of [no_recursion, no_loops, no_conditionals, stmt_limit, normal] 
+//  - modifier    -- the current modifier for the proposed solution one of [no_recursion, no_loops, no_conditionals, stmt_limit, normal]
 var app = connect.createServer(
     connect.bodyParser()
   , function(req, resp) {
+    console.log('Started handling request...')
     var child     = spawn('node', ['validator.js'])
       , responded = false
     try {
+      console.log('Writing to the child...')
+      console.log('Data:', req.body.input, req.body.modifier, req.body.solution)
       child.stdin.write(
         JSON.stringify(
           {input:req.body.input, solution:modifiers[req.body.modifier](req.body.solution)}
@@ -29,7 +32,9 @@ var app = connect.createServer(
       return false;
     }
     child.stdout.on('data', function(data) {
+      console.log('Got data back...')
       data = data.toString('utf8')
+      console.log(data)
       try {
         if(comparisons[req.body.comparison](JSON.parse(req.body.expected), JSON.parse(data))) {
           responded = true
@@ -52,7 +57,7 @@ var app = connect.createServer(
         resp.writeHead(400, {'Content-Type':'text/plain'})
         resp.end('bad')
         child.kill()
-      } 
+      }
     }, MAX_LIFE)
   }
 )
