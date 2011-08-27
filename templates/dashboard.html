@@ -1,15 +1,21 @@
-{% extends 'base.html' %}
+{% extends "user.html" %}
 
-{% block content %}
-    <a id="start-race" href="/races/create/">Start a race!</a>
+{% block title %}Dashboard - {{ block.super }}{% endblock %}
 
-    {% with user.initiated_race_set.all as your_races %}
-    <h2>Your Races</h2>
-    <ul id="your-races">
-        {% for race in your_races %}
-        <li><a href="{{ race.get_absolute_url }}">{{ race }}</a></li>
-        {% endfor %}
-    </ul>
-    {% endwith %}
+{% block other_info %}
+    <div>
+        <h3>Your Races</h3>
 
+        <div>
+            <a href="/races/create/" class="button">Start A New Race</a>
+        </div>
+
+        {% with user.initiated_race_set.all as your_races %}
+        <ul id="your-races">
+            {% for race in your_races %}
+            <li><a href="{{ race.get_absolute_url }}">Race #{{ race.pk }}</a> &ndash; Won/Lost/Quit</a></li>
+            {% endfor %}
+        </ul>
+        {% endwith %}
+    </div>
 {% endblock %}
