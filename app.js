@@ -1,3 +1,5 @@
+var app = require('./config/app')
+
 app.listen(process.env.NODE_ENV === 'production' ? 80 : 8000, function() {
   console.log('Ready');
 
