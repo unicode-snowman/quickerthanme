@@ -8,9 +8,10 @@
         "test"  :   "test"
     },
     "dependencies" :   {
+        "connect": ">=1.4.0",
         "burrito" :   "0.2.X",
+        "pg" :   "0.X.X",
         "ormnomnom" :   "0.0.3",
-        "pg" :   "0.5.X",
         "escaperoute" :  "0.X.X",
         "plate" :  "0.X.X",
         "everyauth" :  "0.2.X",
