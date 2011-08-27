@@ -1,4 +1,5 @@
 var app = require('./config/app')
+  , nko = require('nko')('UO1b95S1RWINAw2i')
 
 app.listen(process.env.NODE_ENV === 'production' ? 80 : 8000, function() {
   console.log('Ready');

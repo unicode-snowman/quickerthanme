@@ -8,6 +8,7 @@
         "test"  :   "test"
     },
     "dependencies" :   {
+        "nko" :  "X.X.X",
         "restler" :  "X.X.X",
         "mime" :  "X.X.X",
         "oauth" :  "X.X.X",
