@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Question - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="generic-wrapper">
+        <h2>Add A Question</h2>
+
+        <form method="POST" action="" id="add-question">
+            <div class="form-row">
+                <label for="id_question">Question:</label>
+                <textarea id="id_question" name="question"></textarea>
+            </div>
+            <div class="form-row">
+                <label for="id_reference">Reference Implementation:</label>
+                <textarea id="id_reference" name="reference"></textarea>
+                <div class="hint">A working Javascript solution. Should be identical what would be entered in during the competition.</div>
+            </div>
+            <div class="form-row">
+                <label for="id_input">Validated Input:</label>
+                <input type="text" id="id_input" name="input">
+                <div class="hint">
+                    A valid bit of JSON (string, integer, float, Array, etc) that will be the test input.<br>
+                    Will <strong>NOT</strong> be shown to the user.
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="id_output">Validated Output:</label>
+                <input type="text" id="id_output" name="output">
+                <div class="hint">
+                    A valid bit of JSON (string, integer, float, Array, etc) that is the correct output for the above input.
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="id_comparison_type">Comparison Type:</label>
+                <select id="id_comparison_type" name="comparison_type">
+                    <option value="strict" selected="selected">Strictly Equal (===)</option>
+                    <option value="set">Values in Set (non-deterministic ordering)</option>
+                    <option value="float">Float (to 6 decimal places)</option>
+                </select>
+                <div class="hint">
+                    How the competitor's response should be compared to your output.
+                </div>
+            </div>
+            <div class="form-row">
+                <input type="submit" value="Submit!">
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -5,6 +5,8 @@ h1, h2, h3 { font-family: Georgia, Times New Roman, serif; margin-bottom: 10px; 
 img { border-width: 0; display: block; }
 /* Because HTML5. */
 section, aside, header, footer { display: block; }
+label { display:block; font-weight: bold; }
+input[type="text"], textarea { padding: 5px; }
 
 header, #main, footer { text-align: center; }
 header { background-color: #666666; height: 50px; padding-top: 10px; padding-bottom: 10px; border-bottom: solid 2px #333333;
@@ -41,6 +43,7 @@ header a, header a:visited, header a:hover { color: #FFFFFF; }
 .little-gravatar-image { height: 50px; width: 50px; }
 
 #content-wrapper { float: left; width: 690px; margin: 0px 0 20px 0; }
+.generic-wrapper { margin: 10px 0 20px 0; background-color: #FFFFFF; border-radius: 5px; padding: 10px 20px; }
 #qa-wrapper { float: left; width: 690px; margin: 10px 0 20px 0; background-color: #FFFFFF; border-radius: 5px; }
 #question-wrapper, #answer-wrapper { float: left; width: 300px; padding: 10px 20px; }
 #question-wrapper { margin-right: 10px; }
@@ -50,5 +53,9 @@ header a, header a:visited, header a:hover { color: #FFFFFF; }
 
 #other-competitors { clear: both; background-color: #FFFFFF; padding: 10px 20px; border-radius: 5px; }
 #other-competitors ul { list-style: none; }
+
+.form-row { margin-bottom: 20px; }
+.form-row textarea { height: 300px; width: 300px; }
+.form-row .hint { font-style: italic; color: #888888; }
 
 footer .centerriffic { text-align: center; }
