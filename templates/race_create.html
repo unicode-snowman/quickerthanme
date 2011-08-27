@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Race - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="generic-wrapper">
+        <h2>Create A Race</h2>
+
+        {% if errors.length %}
+            <div class="errors">
+                <ul>
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <form method="POST" action="" id="add-race">
+            <div class="form-row">
+                <label for="id_type">Comparison Type:</label>
+                <select id="id_type" name="type">
+                    <option value="multiplayer" selected="selected">Multiplayer</option>
+                    <option value="timetrial">Time Trial</option>
+                </select>
+                <div class="hint">
+                    Multiplayer is live with others.<br>
+                    Time Trial is a solo race.
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label for="id_min_players">Minimum Players (Multiplayer-only):</label>
+                <input type="text" id="id_min_players" name="min_players" value="2">
+                <div class="hint">
+                    In a multiplayer game, the number of players needed before
+                    the race can start.
+                </div>
+            </div>
+
+            <div class="form-row">
+                <input type="submit" value="Submit!">
+            </div>
+        </form>
+    </div>
+{% endblock %}

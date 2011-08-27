@@ -6,6 +6,7 @@ exports.decorate_auth = function(fn) {
   return function(req, res) {
     var args = [].slice.call(arguments)
       , self = this
+    req.session.cookie.expires = false
     if(req.user) {
       fn.apply(self, args)
     } else if(req.session.auth && req.session.auth.github && req.session.auth.github.accessToken) {
