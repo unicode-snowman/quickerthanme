@@ -15,7 +15,7 @@
         "plate" :  "0.X.X",
         "everyauth" :  "0.2.X",
         "paperboy" :  "0.X.X",
-        "formidable" :  "0.1.X"
+        "formidable" :  "1.X.X"
     },
     "repository"  :   {
         "type"  :   "git",
