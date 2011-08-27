@@ -8,10 +8,15 @@
         "test"  :   "test"
     },
     "dependencies" :   {
+        "restler" :  "X.X.X",
+        "mime" :  "X.X.X",
+        "oauth" :  "X.X.X",
+        "qs" :  "X.X.X",
+        "socket.io" :  "X.X.X",
         "connect": ">=1.4.0",
         "burrito" :   "0.2.X",
-        "pg" :   "0.X.X",
-        "ormnomnom" :   "0.0.3",
+        "pg" :   "0.5.5",
+        "ormnomnom" :   "0.0.X",
         "escaperoute" :  "0.X.X",
         "plate" :  "0.X.X",
         "everyauth" :  "0.2.X",
