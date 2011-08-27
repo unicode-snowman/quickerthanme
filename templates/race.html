@@ -3,132 +3,46 @@
 {% block title %}Race {{ race.pk }} - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div id="full-track">
+        <script type="text/html" id="question_template">
+          {{ question_template|safe }}
+        </script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/race.js"></script>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+        <div id="race">
+        <div id="full-track">
             <div class="stats">
                 <h3>Time Left: <span id="time-left">7:38</span></h3>
                 <h3>Leader: <span id="current-leader">Chris</span></h3>
             </div>
-            <div id="track-progress">
-                <div id="track-1" class="track">
-                    <div class="question question-10"></div>
-                    <div class="question question-9"></div>
-                    <div class="question question-8"></div>
-                    <div class="question question-7"><span class="progress-dot">&dot;</span></div>
-                    <div class="question question-6"></div>
-                    <div class="question question-5"></div>
-                    <div class="question question-4"></div>
-                    <div class="question question-3"></div>
-                    <div class="question question-2"></div>
-                    <div class="question question-1"></div>
+            <div id="track">
+              {% for racer in racers %}
+                <div id="{{ racer.screen_name }}" class="racer">
+                  <img src="http://www.gravatar.com/avatar/{{ user.gravatar_id }}" alt="{{ racer.name }}" />
                 </div>
-                <div id="track-2" class="track">
-                    <div class="question question-10"></div>
-                    <div class="question question-9"></div>
-                    <div class="question question-8"></div>
-                    <div class="question question-7"></div>
-                    <div class="question question-6"></div>
-                    <div class="question question-5"><span class="progress-dot">&dot;</span></div>
-                    <div class="question question-4"></div>
-                    <div class="question question-3"></div>
-                    <div class="question question-2"></div>
-                    <div class="question question-1"></div>
-                </div>
-                <div id="track-3" class="track">
-                    <div class="question question-10"></div>
-                    <div class="question question-9"></div>
-                    <div class="question question-8"></div>
-                    <div class="question question-7"></div>
-                    <div class="question question-6"></div>
-                    <div class="question question-5"></div>
-                    <div class="question question-4"></div>
-                    <div class="question question-3"></div>
-                    <div class="question question-2"></div>
-                    <div class="question question-1"></div>
-                </div>
-                <div id="track-4" class="track">
-                    <div class="question question-10"></div>
-                    <div class="question question-9"></div>
-                    <div class="question question-8"></div>
-                    <div class="question question-7"></div>
-                    <div class="question question-6"></div>
-                    <div class="question question-5"></div>
-                    <div class="question question-4"></div>
-                    <div class="question question-3"></div>
-                    <div class="question question-2"></div>
-                    <div class="question question-1"></div>
-                </div>
-            </div>
-            <div id="competitor-icons">
-                <div id="track-competitor-1" class="competitor">
-                    <img src="{{ MEDIA_URL }}img/chris_avatar.jpg" alt="Chris" class="little-gravatar-image">
-                </div>
-                <div id="track-competitor-2" class="competitor">
-                    <img src="{{ MEDIA_URL }}img/daniel_avatar.jpg" alt="Daniel" class="little-gravatar-image">
-                </div>
-                <div id="track-competitor-3" class="competitor">
-                    &nbsp;
-                </div>
-                <div id="track-competitor-4" class="competitor">
-                    &nbsp;
-                </div>
+              {% endfor %} 
             </div>
         </div>
 
-        <div id="content-wrapper">
-            <div id="qa-wrapper">
-                <div id="question-wrapper">
-                    <h2>Question #<span class="question-number">7</span> (out of 10)</h2>
-
-                    <div id="question-text">
-                        Given a string as input, return the string in reverse.
-                    </div>
-
-                    <div id="sample-input-wrapper">
-                        <strong>Sample Input:</strong>
-                        <code id="sample-input">'dlrow olleh'</code>
-                    </div>
-
-                    <div id="sample-output-wrapper">
-                        <strong>Sample Output:</strong>
-                        <code id="sample-output">'hello world'</code>
-                    </div>
-
-                    <h2>Modifier</h2>
-
-                    <div id="modifier">
-                        You can not use a <code>while</code> loop in your solution.
-                    </div>
-                </div>
-
-                <div id="answer-wrapper">
-                    <h2>Your Answer</h2>
-
-                    <form method="POST" action="/<race_id>/question/7/answer/">
-                        <textarea id="answer-area">
-function main(input) {
-// Write your code here.
-
-// Return your answer here.
-return answer;
-}
-                        </textarea>
-
-                        <button id="stupid-submit-button">Submit!</button>
-                    </form>
-                </div>
-
-            </div>
-
-            <div id="other-competitors">
-                <h2>Other Competitors</h2>
-
-                <ul>
-                    <li class="competitor competitor-1">
-                        <img src="{{ MEDIA_URL }}img/daniel_avatar.jpg" alt="Daniel" class="little-gravatar-image">
-                        <span class="contestant-name"><a href="">Daniel</a></span> &mdash;
-                        <span class="activity typing">Typing...</span>
-                    </li>
-                </ul>
-            </div>
+        <div id="questions">
+       
+        </div>
+        <div id="answer">
+            <textarea class="answer"></textarea>
+            <div id="status"></div>
+        </div>
+        </div>
+        <div id="lobby">
+          {% for racer in racers %}
+              <div id="{{ racer.screen_name }}" class="racer">
+                <img src="http://www.gravatar.com/avatar/{{ user.gravatar_id }}" alt="{{ racer.name }}" />
+                <h3>{{ racer.name }}</h3>
+                {% if racer.pk == user.pk %}
+                <button class="status">Not ready</button>
+                {% else %}
+                  <p class="status">Not ready</p>
+                {% endif %}
+              </div>
+          {% endfor %}
         </div>
 {% endblock %}
