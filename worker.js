@@ -26,6 +26,7 @@ var app = connect.createServer(
         )
       )
     } catch(err) {
+      console.log('Caught error in writing to stdin: ', err)
       responded = true
       resp.writeHead(400, {'Content-Type':'text/plain'})
       resp.end('bad')
@@ -53,6 +54,7 @@ var app = connect.createServer(
     })
     setTimeout(function() {
       if(!responded) {
+        console.log('Timed out. :/')
         responded = true
         resp.writeHead(400, {'Content-Type':'text/plain'})
         resp.end('bad')
