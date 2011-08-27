@@ -51,7 +51,7 @@ exports.require_race = function(fn) {
       args.splice(2, 1, race)
       fn.apply(self, args)
     }).on('error', function(err) {
-      render('404.html', {}, req, resp, 404)
+      render('404.html', {}, req, res, 404)
     })
   }
 }
