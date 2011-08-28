@@ -2,6 +2,33 @@
 
 {% block content %}
     <div class="generic-wrapper">
-        <h2>Coming Soon!</h2>
+        <h2>Prove Who's The Fastest!</h2>
+
+        <p>
+            You know how it goes. Your friend (or enemy) is boasting how good
+            (s)he is at Javascript. This is your chance to put them to the
+            test &amp; put them in their place.
+        </p>
+
+        <p>
+            <strong>Challenge up to 3 other people</strong> to a race to the
+            finish. Using your <strong><a href="http://github.com/">GitHub</a></strong>
+            account, <strong><a href="/auth/github/">create an account</a></strong> &amp;
+            get racing!
+        </p>
+    </div>
+
+    <div class="generic-wrapper">
+        <h2>Who's Currently Racing</h2>
+
+        {% with RACES as races %}
+        {% for race_state in races %}
+            <div>
+                {% for user in race_state.users %}
+                <img src="http://www.gravatar.com/avatar/{{ user.gravatar_id }}" alt="{{ user.name }}">
+                {% endfor %}
+            </div>
+        {% endfor %}
+        {% endwith %}
     </div>
 {% endblock %}
