@@ -49,7 +49,28 @@
         </div>
 
         <div>
-            <h3>Match Breakdown</h3>
+            <h3>Race Details</h3>
+
+            <div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Race Type:</th>
+                            <td>{{ race.get_type_display }}</td>
+                        </tr>
+                        <tr>
+                            <th>Players:</th>
+                            <td>{% with race.racers.all.count as count %}{{ count }}{% endwith %}</td>
+                        </tr>
+                        <tr>
+                            <th>Played on:</th>
+                            <td>{{ race.played_on }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Question Breakdown</h3>
 
             <table>
                 <thead>
