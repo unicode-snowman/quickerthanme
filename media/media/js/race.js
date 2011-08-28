@@ -23,11 +23,9 @@
           $.post('./solution/', form.serialize())
         })
         form.find('textarea').css({position:'relative', width:'600px', height:'400px'})
-        var ace  = window.__ace_shadowed__
         return function(to) {
           to.html('')
           to.append(form)
-          setTimeout(function() { ace && ace.transformTextarea(form.find('textarea').eq(0)[0]) }, 0)
         }
       }
 
