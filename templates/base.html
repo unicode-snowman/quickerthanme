@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/font/font.css" />
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/base.css" />
     <script type="text/javascript" src="{{ MEDIA_URL }}js/spin.min.js"></script>
     <title>{% block title %}QuickerThan.Me{% endblock %}</title>
 </head>
 <body class="{% block body_class %}{% endblock %}">
     <header>
-        <div class="centerriffic">
+        {% block header %}
+        <div>
             <div id="logo">
-                <h1><a href="/">QuickerThan.Me</a></h1>
+                <h1><a href="/">quickerthan.me</a></h1>
             </div>
 
             <div id="user-details">
@@ -30,23 +32,28 @@
             {% endif %}
             </div>
         </div>
+        {% endblock %}
     </header>
 
     <div id="main">
-        <div id="main-wrapper" class="centerriffic">
+        <div id="main-wrapper">
             {% block content %}
-                <p>You shouldn't see this...</p>
+                <div class="box">
+                  <div>
+                    <p>You shouldn't see this...</p>
+                  </div>
+                </div>
             {% endblock %}
         </div>
     </div>
-
+    <div style="width:100%; height:1px; clear:both;"></div>
     <footer>
-        <div class="centerriffic">
+        <div>
             Copyright &copy; 2011 &ndash;
             <a href="http://nodeknockout.com/teams/snowman">☃</a> &ndash;
             A <a href="http://nodeknockout.com/">Node Knockout</a> competition entry.
         </div>
-        <div class="centerriffic">
+        <div>
             <iframe src="http://nodeknockout.com/iframe/snowman" frameborder=0 scrolling=no allowtransparency=true width=115 height=25></iframe>
         </div>
     </footer>

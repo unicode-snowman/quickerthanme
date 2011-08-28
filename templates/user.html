@@ -3,59 +3,78 @@
 {% block title %}{{ target_user.name }}'s Profile - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div class="generic-wrapper">
-        {% block gravatar %}
-        <div class="gravatar">
-            <img src="http://www.gravatar.com/avatar/{{ target_user.gravatar_id }}" alt="{{ target_user.name }}" />
-        </div>
-        {% endblock %}
-
+    <div class="box">
+        <div>
         {% block user_info %}
-        <div id="user_info">
-            {% if req.user.pk == target_user.pk %}
-            <h2>Your Profile</h2>
-            {% else %}
-            <h2>{{ target_user.name }}</h2>
-            {% endif %}
-
+        <div id="user_info" class="divider">
             <div>
-                <a href="https://github.com/{{ target_user.screen_name }}">https://github.com/{{ target_user.screen_name }}</a>
+              <div class="gravatar left">
+                  <img src="http://www.gravatar.com/avatar/{{ target_user.gravatar_id }}" alt="{{ target_user.name }}" />
+              </div>
+              <div class="right">
+                {% if user.pk == target_user.pk %}
+                  <h2>Your Profile</h2>
+                {% else %}
+                  <h2>{{ target_user.name }}</h2>
+                {% endif %}
+
+                <div>
+                    <a href="https://github.com/{{ target_user.screen_name }}">https://github.com/{{ target_user.screen_name }}</a>
+                </div>
+              </div>
             </div>
         </div>
         {% endblock %}
 
         {% block other_info %}
+          <div class="divider">
+            <h3>{{ target_user.screen_name }}&rsquo;s latest races</h3>
+            <ul id="your-outcomes">
+              {% with target_user.outcome_set.all as outcomes %}
+                {% for outcome in outcomes %}
+                  {% with outcome.race as race %}
+                    <li class="state state-{{ outcome.status }} place-{{ outcome.place }}">
+                      <span></span><a href="{{ race.get_absolute_url }}">Race #{{ race.pk }}</a>
+                    </li>
+                  {% endwith %}
+                {% endfor %}
+              {% endwith %}
+            </ul>
+          </div>
         {% endblock %}
 
         {% block stats %}
-        <div class="stats">
-            <h3>Stats</h3>
+        <div class="stats divider">
+            <div>
+              <h3>Stats</h3>
 
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Total Races:</th>
-                        <td class="numeric">{{ target_user.total_races }}</td>
-                    </tr>
-                    <tr>
-                        <th>Races Won:</th>
-                        <td class="numeric">{{ target_user.races_won }}</td>
-                    </tr>
-                    <tr>
-                        <th>Questions Solved:</th>
-                        <td class="numeric">{{ target_user.questions_solved }}</td>
-                    </tr>
-                    <tr>
-                        <th>Average Time To Solve A Question:</th>
-                        <td class="numeric">{{ target_user.avg_question_time }}</td>
-                    </tr>
-                    <tr>
-                        <th>Questions Created:</th>
-                        <td class="numeric">{{ target_user.questions_created }}</td>
-                    </tr>
-                </tbody>
-            </table>
+              <table>
+                  <tbody>
+                      <tr>
+                          <th>Total Races:</th>
+                          <td class="numeric">{{ target_user.total_races }}</td>
+                      </tr>
+                      <tr>
+                          <th>Races Won:</th>
+                          <td class="numeric">{{ target_user.races_won }}</td>
+                      </tr>
+                      <tr>
+                          <th>Questions Solved:</th>
+                          <td class="numeric">{{ target_user.questions_solved }}</td>
+                      </tr>
+                      <tr>
+                          <th>Average Time To Solve A Question:</th>
+                          <td class="numeric">{{ target_user.avg_question_time }}</td>
+                      </tr>
+                      <tr>
+                          <th>Questions Created:</th>
+                          <td class="numeric">{{ target_user.questions_created }}</td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
         </div>
         {% endblock %}
+      </div>
     </div>
 {% endblock %}

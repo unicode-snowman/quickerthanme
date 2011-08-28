@@ -1,12 +1,14 @@
 * { margin: 0; padding: 0;}
 
-body { font-family: Helvetica sans-serif; background-image: url('../img/bg.png'); color: #333333; }
-h1, h2, h3 { font-family: Georgia, Times New Roman, serif; margin-bottom: 10px; }
+body { font-family: "Helvetica" sans-serif; background: repeat-y url('../img/bg.png') white; color: #333333; min-height:100%; }
+body { position:relative; }
+
+h1, h2, h3 { font-family: "SansationBold", "Helvetica", sans-serif; margin-bottom: 10px; }
 img { border-width: 0; display: block; }
 /* Because HTML5. */
 section, aside, header, footer { display: block; }
 label { display:block; font-weight: bold; }
-input[type="text"], textarea { padding: 5px; }
+input[type="text"], input[type="number"], textarea { padding: 5px; }
 button, .button { padding: 5px 20px; border-radius: 10px; border-style: solid; border-width: 2px; margin: 0 5px 5px; color: #FFFFFF; font-weight:bold; font-size: 16px; text-shadow: #888888 1px 1px 2px; background-color: #888888; }
 a.button { display: block; }
 ul { padding-left: 20px; }
@@ -15,15 +17,54 @@ table { border-collapse: collapse; width: 100%; margin: 0 20px;}
 table th, table td { padding-right: 10px; }
 table th.numeric, table td.numeric { text-align: right; }
 
-header, #main, footer { text-align: center; }
-header { background-color: #666666; height: 50px; padding-top: 10px; padding-bottom: 10px; border-bottom: solid 2px #333333;
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#555555), to(#666666));
-    background-image: -webkit-linear-gradient(top, #555555, #666666);
-    background-image: -moz-linear-gradient(top, #555555, #666666);
-    background-image: -ms-linear-gradient(top, #555555, #666666);
+textarea { font-size:14px; font-family:monospace; }
+
+
+.form-row { overflow:hidden; }
+.form-row label { width:300px; float:left; }
+.form-row .hint { width:300px; float:left; }
+
+header {
+    width:300px;
+    margin-right:16px;
+    float:left;
 }
-#main { clear: both; }
-footer { background-color: #FFFFFF; border-top: solid 2px #333333; clear: both; padding-top: 20px; padding-bottom: 100px; }
+
+header > div {
+    padding:8px;
+}
+
+#main {
+    width:600px;
+    float:left;
+}
+
+#main > #main-wrapper {
+    padding:8px;
+}
+
+.box            {
+    border:3px solid rgba(0,0,0,0.4);  border-radius:3px; background:#DEDEDE; 
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#DEDEDE), to(#FFFFFF));
+    background-image: -webkit-linear-gradient(top, #DEDEDE, #FFFFFF 25%);
+    background-image: -moz-linear-gradient(top, #DEDEDE, #FFFFFF 25%);
+    background-image: -ms-linear-gradient(top, #DEDEDE, #FFFFFF 25%);
+    margin-bottom:32px; 
+}
+.box > div      { padding:16px; border-radius:3px; } 
+
+.box h1, 
+.box h3, 
+.box h2 { border-bottom:1px solid #CCC; margin-bottom:16px; padding-bottom:8px; }
+
+.divider                { border-bottom:1px solid #CCC; margin-bottom:8px; padding-bottom:8px; }
+.divider:last-child     { border-bottom:none; margin-bottom:0px; padding-bottom:0px; }
+
+.left   { float:left; }
+.right  { margin-left:16px; float:left; }
+.divider    { overflow:hidden; }
+
+footer { position:absolute; bottom:-100px; left:316px; margin-top:100px; }
 .centerriffic { width: 900px; position: relative; margin: auto; text-align: left; }
 
 button, .button {
@@ -67,8 +108,8 @@ button.green:active, .button.green:active {
 }
 
 header a, header a:visited, header a:hover { color: #FFFFFF; }
-#logo { float: left; width: 200px; }
-#logo h1 { font-size: 40px; color: #FFFFFF; text-shadow: #000000 1px 1px 2px; }
+#logo { }
+#logo h1 { font-size:1.8em; color: #FFFFFF; text-shadow: #000000 4px 4px 0px; }
 #logo h1 a, #logo h1 a:visited, #logo h1 a:hover { color: #FFFFFF; text-decoration: none; }
 #user-details { float: right; width: 300px; overflow: hidden; }
 #user-details .big-gravatar { float: left; margin: 0 10px 0 0; }
@@ -86,8 +127,30 @@ header a, header a:visited, header a:hover { color: #FFFFFF; }
 #competitor-icons .competitor { float: left; width: 50px; }
 .little-gravatar-image { height: 50px; width: 50px; }
 
+.state span { width:16px; display:inline-block; height:24px; background:#2f2f2f; position:relative; margin:0px 32px; bottom:-4px; 
+    border-radius:3px 3px 0px 0px;
+    border-top:3px solid #CCC;
+    z-index:1;
+}
+.state span:before { content:' '; display:inline-block; width:16px; height:16px; background:#2f2f2f; position:absolute; left:-16px; bottom:0px; 
+    border-radius:3px 0px 0px 0px;
+    border-top:3px solid #CCC;
+    z-index:0;
+}
+.state span:after { content:' '; display:inline-block; width:16px; height:8px; background:#2f2f2f;  position:absolute;right:-16px; bottom:0px; 
+    border-radius:0px 3px 0px 0px;
+    border-top:3px solid #CCC;
+    z-index:0;
+}
+
+.state.place-1 span { background:blue; }
+.state.place-2 span:before { background:blue; }
+.state.place-3 span:after { background:blue; }
+
+
+
 #content-wrapper { float: left; width: 690px; margin: 0px 0 20px 0; }
-.generic-wrapper { margin: 10px 0 20px 0; background-color: #FFFFFF; border-radius: 5px; padding: 10px 20px; }
+.generic-wrapper { margin: 10px 0 20px 0; }
 #qa-wrapper { float: left; width: 690px; margin: 10px 0 20px 0; background-color: #FFFFFF; border-radius: 5px; }
 #question-wrapper, #answer-wrapper { float: left; width: 300px; padding: 10px 20px; }
 #question-wrapper { margin-right: 10px; }
@@ -100,11 +163,8 @@ header a, header a:visited, header a:hover { color: #FFFFFF; }
 
 .form-row { margin-bottom: 20px; }
 .form-row textarea { height: 300px; width: 300px; }
-.form-row .hint { font-style: italic; color: #888888; }
+.form-row .hint { line-height:1.4em; font-size:0.95em; color: #888888; }
 .errors { background-color: #FF8888; border-radius: 5px; padding: 5px 10px; }
-
-footer .centerriffic { text-align: center; }
-
 
 body > .loading { -moz-transition:opacity 0.3s linear, left 0.3s 0.01s linear; -webkit-transition:opacity 0.3s linear, left 0.004s 0.5s linear; position:fixed; top:0px; left:-200%; height:100%; width:100%; opacity:0.0; background:rgba(0,0,0,0.5) }
 body.loading > .loading { opacity:1.0; left:0; }
@@ -123,7 +183,7 @@ body.loading > .loading { opacity:1.0; left:0; }
 #track .racer + .racer + .racer { left:126px; }
 #track .racer + .racer + .racer + .racer { left:184px; }
 
-body.lobby .racing { opacity:0.0; z-index:-1000; }
+body.lobby .racing { display:none; }
 body.racing .lobby { display:none; }
 body.lobby .lobby { display:auto; }
 body.racing .racing { display:auto; }

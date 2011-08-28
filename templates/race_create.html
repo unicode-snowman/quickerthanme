@@ -3,7 +3,8 @@
 {% block title %}Create Race - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div class="generic-wrapper">
+    <div class="box">
+      <div>
         <h2>Create A Race</h2>
 
         {% if errors.length %}
@@ -17,7 +18,7 @@
         {% endif %}
 
         <form method="POST" action="" id="add-race">
-            <div class="form-row">
+            <div class="form-row divider">
                 <label for="id_type">Comparison Type:</label>
                 <select id="id_type" name="type">
                     <option value="multiplayer" selected="selected">Multiplayer</option>
@@ -29,18 +30,19 @@
                 </div>
             </div>
 
-            <div class="form-row">
+            <div class="form-row divider">
                 <label for="id_min_players">Minimum Players (Multiplayer-only):</label>
-                <input type="text" id="id_min_players" name="min_players" value="2">
+                <input type="number" min="1" max="4" id="id_min_players" name="min_players" value="2">
                 <div class="hint">
                     In a multiplayer game, the number of players needed before
                     the race can start.
                 </div>
             </div>
 
-            <div class="form-row">
+            <div class="form-row divider">
                 <button name="submit" class="green">Submit!</button>
             </div>
         </form>
+      </div>
     </div>
 {% endblock %}

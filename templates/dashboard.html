@@ -3,21 +3,37 @@
 {% block title %}Dashboard - {{ block.super }}{% endblock %}
 
 {% block other_info %}
-    <div>
-        <h3>Your Races</h3>
-
-        <div>
-            <a href="/races/create/" class="button green">Start A New Race</a>
-        </div>
-
-        {% with user.initiated_race_set.all as your_races %}
-        <ul id="your-races">
-            {% for race in your_races %}
-            {% with race.won_by as winner %}
-            <li><a href="{{ race.get_absolute_url }}">Race #{{ race.pk }}</a> &ndash; Won by {{ winner.name }} ({% if winner.pk == user.pk %}Won{% else %}Lost{% endif %})</a></li>
-            {% endwith %}
+      <div class="divider">
+        <h3>Your latest races</h3>
+        <ul id="your-outcomes">
+          {% with user.outcome_set.all as outcomes %}
+            {% for outcome in outcomes %}
+              {% with outcome.race as race %}
+                <li class="state state-{{ outcome.status }} place-{{ outcome.place }}">
+                  <a href="{{ race.get_absolute_url }}">Race #{{ race.pk }}</a>
+                </li>
+              {% endwith %}
             {% endfor %}
+          {% endwith %}
         </ul>
-        {% endwith %}
+      </div>
+
+    <div class="divider">
+        <div>
+          <h3>Your Races</h3>
+
+          <div>
+              <a href="/races/create/" class="button">Start A New Race</a>
+          </div>
+
+          <h3>Started by you</h3>
+          {% with user.initiated_race_set.all as your_races %}
+          <ul id="your-races">
+              {% for race in your_races %}
+              <li><a href="{{ race.get_absolute_url }}">Race #{{ race.pk }}</a> &ndash; Won/Lost/Quit</a></li>
+              {% endfor %}
+          </ul>
+          {% endwith %}
+        </div>
     </div>
 {% endblock %}
