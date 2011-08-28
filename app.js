@@ -23,7 +23,8 @@ var create_validator_server = function(port) {
     process.stderr.write('CHILD[err] - '+data)
   })
 
-  server.on('exit', function() {
+  server.on('exit', function(code) {
+    if(code === 0)
     setTimeout(function() {
       create_validator_server(port)
     }, 0)
