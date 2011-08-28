@@ -15,53 +15,52 @@ var burrito         = require('burrito')
 var app = connect.createServer(
     connect.bodyParser()
   , function(req, resp) {
-    console.log('Started handling request...')
+    console.error('------------- GOT REQ --------------')
     var child     = spawn('node', [validator_path])
       , responded = false
+
+    var errored = function(message) {
+      console.error('errored:', message)
+      responded = true
+      resp.writeHead(400, {'Content-Type':'text/plain'})
+      resp.end('bad')
+    }
+    console.error(req.body)
+
     try {
-      console.log('Writing to the child...')
-      console.log('Data:', req.body.input, req.body.modifier, req.body.solution)
-      child.stdin.write(
+      child.stdin.end(
         JSON.stringify(
           {input:req.body.input, solution:modifiers[req.body.modifier]('(function() { '+req.body.solution+'; })()')}
         )
       )
-    } catch(err) {
-      console.log('Caught error in writing to stdin: ', err)
-      responded = true
-      resp.writeHead(400, {'Content-Type':'text/plain'})
-      resp.end('bad')
-      return false;
-    }
-    child.stdout.on('data', function(data) {
-      console.log('Got data back...')
-      data = data.toString('utf8')
-      try {
-        console.error('and ze result is', comparisons[req.body.comparison_type](JSON.parse(req.body.output), JSON.parse(data)))
-        if(comparisons[req.body.comparison_type](JSON.parse(req.body.output), JSON.parse(data))) {
-          responded = true
-          resp.writeHead(200, {'Content-Type':'text/plain'})
-          resp.end('okay')
-        } else {
-          responded = true
-          resp.writeHead(400, {'Content-Type':'text/plain'})
-          resp.end('bad')
+      child.stdout.on('data', function(data) {
+        try {
+          data = data.toString('utf8')
+          if(comparisons[req.body.comparison_type](JSON.parse(req.body.output), JSON.parse(data))) {
+            responded = true
+            resp.writeHead(200, {'Content-Type':'text/plain'})
+            resp.end('okay')
+          } else {
+            errored('not equal')
+          }
+        } catch(err) {
+          errored(err.stack)
         }
-      } catch(err) {
-        responded = true
-        resp.writeHead(400, {'Content-Type':'text/plain'})
-        resp.end('bad')
-      }
-    })
-    setTimeout(function() {
-      if(!responded) {
-        console.log('Timed out. :/')
-        responded = true
-        resp.writeHead(400, {'Content-Type':'text/plain'})
-        resp.end('bad')
-        child.kill()
-      }
-    }, MAX_LIFE)
+      })
+
+      child.stderr.on('data', function(data) {
+        errored(''+data)
+      })
+
+      setTimeout(function() {
+        if(!responded) {
+          errored('died of too long of a life')
+          child.kill()
+        }
+      }, MAX_LIFE)
+    } catch(err) {
+      errored(err.stack)      
+    }
   }
 )
 

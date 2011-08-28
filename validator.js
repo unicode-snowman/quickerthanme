@@ -6,12 +6,16 @@ process.stdin.on('data', function(data) {
     , input   = packet.input
     , solution= packet.solution
 
-  var result = vm.runInNewContext(solution, {'input':JSON.parse(input)}, 'test')
-  result = JSON.stringify(result)
+  var exp = {}
+  vm.runInNewContext('exp.___x = '+solution, {'input':JSON.parse(input), 'exp':exp}, 'test')
+  var result = exp.___x
+  result = JSON.stringify(result, input)
 
   // give this bitch a drain event. bitches love drain events.
-  if(!process.stdout.write(result)) {
+  if(result !== undefined && !process.stdout.write(result)) {
     process.stdout.on('drain', process.exit.bind(process))
+  } else {
+    process.stderr.write('got undefined from '+data+', y\'all screwed up')
   }
 })
 
