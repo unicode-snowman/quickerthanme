@@ -1,4 +1,15 @@
 ;(function(exports) {
+  // if bind isn't available we *make* it available.
+  Function.prototype.bind ||
+    (Function.prototype.bind = function(to) {
+      var args = slice.call(arguments, 1),
+          self = this;
+      return function() {
+        self.apply(to, args.concat(slice.call(arguments)));
+      };
+    });
+
+
   var Racer = function(screen_name, is_me) {
     this.screen_name = screen_name
     this.is_me = is_me
@@ -78,13 +89,13 @@
       if(!$('#track-'+user.screen_name).length) {
         self.add_racer(new Racer(user.screen_name), user.is_me)
         $('#track').append(
-          '<div id="track-'+user.screen_name+'" class="racer gravatar">'+
+          '<div id="track-'+user.screen_name+'" class="racer gravatar ghost">'+
           '<img src="http://www.gravatar.com/avatar/'+user.gravatar_id+'" />'+
           '</div>'
         )
 
         $('#lobby').append(
-          '<div id="lobby-'+user.screen_name+'" class="lobby gravatar">'+
+          '<div id="lobby-'+user.screen_name+'" class="lobby gravatar ghost">'+
           '<img src="http://www.gravatar.com/avatar/'+user.gravatar_id+'" />'+
           '<button id="'+(user.is_me?'my-button':'')+'">'+(user.ready ? 'Ready' : 'Not ready')+'</button>'+
           '</div>'

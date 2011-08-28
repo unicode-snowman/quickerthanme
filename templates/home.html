@@ -40,12 +40,14 @@
 
         {% with RACES as races %}
         {% for race_id, race_state in races|iteritems %}
+            {% if not race_state.is_ghost %}
                 {% for user in race_state.users %}
                 <div class="gravatar">
                   <a href="{{ user.user.get_absolute_url }}"></a>
                   <img src="http://www.gravatar.com/avatar/{{ user.user.gravatar_id }}" alt="{{ user.user.screen_name }}">
                 </div>
                 {% endfor %}
+            {% endif %}
         {% endfor %}
         {% endwith %}
 

@@ -196,6 +196,8 @@ body.loading > .loading { opacity:1.0; left:0; }
 #track .racer + .racer + .racer { left:141px; }
 #track .racer + .racer + .racer + .racer { left:205px; }
 
+.ghost { opacity:0.5; }
+
 body.lobby .racing { display:none; }
 body.racing .lobby { display:none; }
 body.lobby .lobby { display:auto; }
@@ -225,6 +227,8 @@ textarea { width:530px; height:300px; display:block; border-radius:3px; border:1
 .grid .gravatar { float:left; margin-right:16px; margin-bottom:16px; }
 
 th, td { text-align:left; }
+
+
 
 .gallery-image { float: left; margin-left: 20px; border: solid 2px #333333; }
 .clear_both { clear: both; }
