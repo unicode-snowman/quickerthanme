@@ -12,7 +12,7 @@
         <div id="wrong" class="racing">:(</div>
         <div id="question" class="racing">
           <p class="description"></p>
-          <pre class="input"></pre> 
+          <pre class="input"></pre>
         </div>
         <div id="answer" class="racing">
             <form id="race-form" method="POST" action=".">
@@ -22,6 +22,11 @@
         </div>
         </div>
         <div id="lobby" class="lobby">
+        </div>
+        <!-- FIXME: Just for now, until we get styling on the page so there's no overlap. -->
+        <div style="text-align: right">
+          <h2>Invite Others To Race via Twitter!</h2>
+          <a href="http://twitter.com/share" class="twitter-share-button" data-text="I dare you to prove you're" data-url="http://quickerthan.me/races/{{ race.pk }}/." data-count="none" data-related="quickerthanme">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
         </div>
 {% endblock %}
 
