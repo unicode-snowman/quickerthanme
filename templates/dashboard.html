@@ -7,13 +7,15 @@
         <h3>Your Races</h3>
 
         <div>
-            <a href="/races/create/" class="button">Start A New Race</a>
+            <a href="/races/create/" class="button green">Start A New Race</a>
         </div>
 
         {% with user.initiated_race_set.all as your_races %}
         <ul id="your-races">
             {% for race in your_races %}
-            <li><a href="{{ race.get_absolute_url }}">Race #{{ race.pk }}</a> &ndash; Won/Lost/Quit</a></li>
+            {% with race.won_by as winner %}
+            <li><a href="{{ race.get_absolute_url }}">Race #{{ race.pk }}</a> &ndash; Won by {{ winner.name }} ({% if winner.pk == user.pk %}Won{% else %}Lost{% endif %})</a></li>
+            {% endwith %}
             {% endfor %}
         </ul>
         {% endwith %}
