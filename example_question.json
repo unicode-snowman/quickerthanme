@@ -1,15 +1,15 @@
-[
+module.exports = [
     {
         "question": "Reverse any string: 'dlrow olleh'.",
-        "input": "sirhc ih",
+        "input": "\"sirhc ih\"",
         "solution": "[].slice.call(input).reverse();",
-        "output": "hi chris",
+        "output": "\"hi chris\"",
         "comparison_type": "strict"
     },
     {
         "question": "For a given number of iterations, calculate the result of the Fibonacci sequence.",
         "input": "28",
-        "solution": "function fib(n) { return n < 2 ? n : fib(n-1) + fib(n-2); } fib(input)",
+        "solution": "function fib(n) { return n < 2 ? n : fib(n-1) + fib(n-2); } return fib(input)",
         "output": "317811",
         "comparison_type": "strict"
     },
@@ -22,9 +22,72 @@
     },
     {
         "question": "Convert a given string to Rot14 (lowercase letters only).",
-        "input": "this is probably too easy",
-        "solution": "input.split('').map(function(letter) { var raw = letter.charCodeAt(); if(raw < 97 || raw > 122) { return letter; } var converted = raw + 14; if(raw <= 122 && converted > 122) { return String.fromCharCode(converted - 26); } return String.fromCharCode(converted); }).join('');",
-        "output": "hi chris",
+        "input": "\"this is probably too easy\"",
+        "solution": "return input.split('').map(function(letter) { var raw = letter.charCodeAt(); if(raw < 97 || raw > 122) { return letter; } var converted = raw + 14; if(raw <= 122 && converted > 122) { return String.fromCharCode(converted - 26); } return String.fromCharCode(converted); }).join('');",
+        "output": "\"hvwg wg dfcpopzm hcc sogm\"",
         "comparison_type": "strict"
-    }
+    },
+    {
+        "question": "Swap every other character of a string.",
+        "input": "\"a veeeerrry long string\"",
+        "solution": "return input.split('').map(function(char, i) {
+  if(i % 2 === 0) {
+    return [input[i + 1] || '', input[i]].join('');
+  }
+  else {
+    return '';
+  }
+}).join('')",
+        "output": "\" aeveererr yolgns rtnig\"",
+        "comparison_type": "strict"
+    },
+    {
+        "question": "Flatten an array of arrays of integers. Ex. [[7, 2], [3, 4]] => [7, 2, 3, 4]",
+        "input": "[[1, 2], [3, 4, 5], [9], [8, 7]]",
+        "solution": "return JSON.parse('[' + JSON.stringify(input).replace(/[\\[\\]]/g, '') + ']')",
+        "output": "[1, 2, 3, 4, 5, 9, 8, 7]",
+        "comparison_type": "strict"
+    },
+    {
+        "question": "Given an object with a 'source' string & 'keyword' string, append the phrase 'in bed' to all instances of the 'keyword' within the 'source'. Ex. {\"keyword\": \"pie\", \"source\": \"Mister Pants likes pie.\"} => 'Mister Pants likes pie in bed.'",
+        "input": "{\"keyword\": \"cool\", \"source\": \"Buildings are cool cool are cool.\"}",
+        "solution": "return input['source'].replace(new RegExp('('+input['keyword']+')', 'g'), '$1 in bed')",
+        "output": "\"Buildings are cool in bed cool in bed are cool in bed.\"",
+        "comparison_type": "strict"
+    },
+    {
+        "question": "Count the number of times the letter 't' appears in an input string.",
+        "input": "\"The quick brown fox jumped over the lazy brown dogt.\"",
+        "solution": "return input.toLowerCase().replace(/[^t]/g, '').length",
+        "output": "3",
+        "comparison_type": "strict"
+    },
+    {
+        "question": "Given an arbitrarily deep object, using only keys named 'b', return the value from the deepest 'b' key. Ex. {'a': {'b': 12, 'c':45}, 'b': {'a': 12, 'b': {'a': 1, 'c': 3}}, 'c': 43} => {'a': 1, 'c': 3}",
+        "input": "{\"a\": {\"b\": {\"b\": 6}, \"c\":45}, \"b\": {\"a\": 12, \"b\": {\"a\": 1, \"b\": {\"d\": 1}, \"c\": 3}}, \"c\": 43}",
+        "solution": "function find_b(input) { if('b' in input) { return find_b(input['b']); } return input; } return find_b(input);",
+        "output": "{\"d\": 1 }",
+        "comparison_type": "strict"
+    },
+    {
+        "question": "Given a string, return a string that is the same length using '=' characters. Ex. 'Joe writes code.' => '================'",
+        "input": "\"I like sad girls in the snow.\"",
+        "solution": "return input.split('').map(function(letter) { return '='; }).join('')",
+        "output": "=============================",
+        "comparison_type": "strict"
+    },
+    {
+        "question": "Given an array of integers, return the minimum integer. Ex. [6, 3, 4, 2, 7] => 2",
+        "input": "[152, 64, 2938467, 63, 1678]",
+        "solution": "var min = 100000; for(var i in input) { if(input[i] < min) { min = input[i]; } } return min",
+        "output": "63",
+        "comparison_type": "strict"
+    },
 ]
+
+// More ideas.
+// * a couple bitwise questions.
+// * a couple regex questions
+// * use underscore/jquery source for ideas on transforming data
+// * Need some simple questions too!
+// * Turn every pair of string in an array into an anchor tag (<a href=b">a</a>)
