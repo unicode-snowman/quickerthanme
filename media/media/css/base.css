@@ -11,6 +11,7 @@ label { display:block; font-weight: bold; }
 input[type="text"], input[type="number"], textarea { padding: 5px; }
 a.button { display: block; }
 ul { padding-left: 20px; }
+p { margin-bottom: 10px; }
 
 table { border-collapse: collapse; width: 100%; margin: 0 20px;}
 table th, table td { padding-right: 10px; }
