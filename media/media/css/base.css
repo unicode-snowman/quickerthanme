@@ -78,9 +78,6 @@ header a, header a:visited, header a:hover { color: #FFFFFF; }
 #user-details .user-meta { font-size: 16px; list-style: none; }
 #user-details .user-meta li { display: inline; margin-right: 10px; }
 
-#full-track { background-color: #333333; color: #FFFFFF; float: left; width: 200px; margin: 0 10px 30px 0; }
-#full-track h3 { font-size: 14px; margin-bottom: 5px; }
-#full-track .stats { border-bottom: solid 2px #FFFFFF; padding: 5px; }
 #track-progress { height: 400px; }
 #track-progress .track { float: left; }
 #track-progress .question { height: 40px; background-image: url('../img/track_bg.png'); background-repeat: repeat-y; width: 50px; text-align: center; }
@@ -107,3 +104,27 @@ header a, header a:visited, header a:hover { color: #FFFFFF; }
 .errors { background-color: #FF8888; border-radius: 5px; padding: 5px 10px; }
 
 footer .centerriffic { text-align: center; }
+
+
+body > .loading { -moz-transition:opacity 0.3s linear, left 0.3s 0.01s linear; -webkit-transition:opacity 0.3s linear, left 0.004s 0.5s linear; position:fixed; top:0px; left:-200%; height:100%; width:100%; opacity:0.0; background:rgba(0,0,0,0.5) }
+body.loading > .loading { opacity:1.0; left:0; }
+
+.loading > .loading h2 { background:#CCC; padding:10px 20px; border-radius:3px; margin:0pt auto; margin-top:10%; width:300px; }
+
+.gravatar { height:48px; width:48px; position:relative; -webkit-box-shadow:0px -1px 10px rgba(0,0,0,0.3); }
+.gravatar:before { height:48px; width:48px; display:block; left:0px; top:0px; border-radius:3px; margin:2px; z-index:1; position:absolute; -webkit-box-shadow:0px -1px 5px rgba(0,0,0,0.8) inset, 0px 1px 5px rgba(255, 255, 255,0.8) inset; content:' '; }
+.gravatar img { height:100%; width:100%; border-radius:3px; border:2px solid #222; position:absolute; top:0px; left:0px; }
+
+#track  { height:100%; position:absolute; height:100%; width:194px; background-color:#333; padding:10px; }
+#race   { margin-left:230px; }
+#track .racer { display:inline-block; position:absolute; left:10px; margin-right:4px; bottom:0%; }
+#track .racer + .racer { left:68px; }
+#track .racer + .racer + .racer { left:126px; }
+#track .racer + .racer + .racer + .racer { left:184px; }
+
+body.lobby .racing { display:none; }
+body.racing .lobby { display:none; } 
+body.lobby .lobby { display:auto; } 
+body.racing .racing { display:auto; } 
+
+

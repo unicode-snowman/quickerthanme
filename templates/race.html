@@ -2,30 +2,26 @@
 
 {% block title %}Race {{ race.pk }} - {{ block.super }}{% endblock %}
 
+{% block body_class %}lobby loading{% endblock %}
+
 {% block content %}
-        <div id="race">
-        <div id="full-track">
-            <div class="stats">
-                <h3>Time Left: <span id="time-left">7:38</span></h3>
-                <h3>Leader: <span id="current-leader">Chris</span></h3>
-            </div>
-            <div id="track">
-            </div>
+        <div id="track" class="racing">
         </div>
-        <div id="right">:D</div>
-        <div id="wrong">:(</div>
-        <div id="question">
+        <div id="race" class="racing">
+        <div id="right" class="racing">:D</div>
+        <div id="wrong" class="racing">:(</div>
+        <div id="question" class="racing">
           <p class="description"></p>
           <pre class="input"></pre> 
         </div>
-        <div id="answer">
+        <div id="answer" class="racing">
             <form id="race-form" method="POST" action=".">
               <textarea class="answer" name="answer"></textarea>
               <div id="status"></div>
             </form>
         </div>
         </div>
-        <div id="lobby">
+        <div id="lobby" class="lobby">
         </div>
 {% endblock %}
 
@@ -37,15 +33,16 @@
   <script type="text/javascript" src="{{ MEDIA_URL }}js/race.js"></script>
 
   <script type="text/javascript">
-    console.log(QKR)
     $(function() {
       $.getScript('/socket.io/socket.io.js', function() {
         var race = new QKR.Race({{ race.pk }}, {{ user.pk }}, $('#race-form'))
-
-        {% for racer in racers %}
-        race.add_racer(new QKR.Racer('{{ racer.screen_name }}', {% if racer.pk == user.pk %}true{% else %}false{% endif %}))
-        {% endfor %}
       })
     })
   </script>
+{% endblock %}
+
+{% block footer_all %}
+  <div class="loading">
+    <h2>Loading...</h2>
+  </div>
 {% endblock %}

@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/base.css" />
     <title>{% block title %}QuickerThan.Me{% endblock %}</title>
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
     <header>
         <div class="centerriffic">
             <div id="logo">
@@ -14,7 +14,7 @@
 
             <div id="user-details">
             {% if user %}
-                <div class="big-gravatar">
+                <div class="gravatar">
                     <img src="http://www.gravatar.com/avatar/{{ user.gravatar_id }}" alt="Avatar" class="big-gravatar-image">
                 </div>
                 <div class="username">
@@ -49,6 +49,7 @@
             <iframe src="http://nodeknockout.com/iframe/snowman" frameborder=0 scrolling=no allowtransparency=true width=115 height=25></iframe>
         </div>
     </footer>
+    {% block footer_all %}{% endblock %}
     {% block javascript %}
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.min.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/plate.min.js"></script>

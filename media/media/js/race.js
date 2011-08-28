@@ -20,6 +20,12 @@
       self.socket.emit('join', self.id, self.user)
     })
 
+    this.socket.on('progress', function(screen_name, question_no, total) {
+      var target = $('#track-'+screen_name)
+        , current = ~~((question_no / total)*100)
+
+      target.animate({'bottom':current+'%'})
+    }) 
 
     var asking = false
     this.form.submit(function(ev) {
@@ -30,7 +36,8 @@
       try {
         new Function('input', val)
 
-        self.socket.emit('solution', val)
+        console.error('--------- SENDING ------------')
+        self.socket.emit('solution', val, +new Date)
         asking = true
       } catch(err) {
         console.log(err)
@@ -49,33 +56,35 @@
     })
 
     this.socket.on('challenger', function(user, quorum) {
+      $('body').removeClass('loading')
       // a new user joined the fray.
       console.error('challenger', user, quorum)
+      if(!$('#track-'+user.screen_name).length) {
+        self.add_racer(new Racer(user.screen_name), user.is_me)
+        $('#track').append(
+          '<div id="track-'+user.screen_name+'" class="racer gravatar">'+
+          '<img src="http://www.gravatar.com/avatar/'+user.gravatar_id+'" />'+
+          '</div>'
+        )
 
-      $('#track').append(
-        '<div id="track-'+user.screen_name+'" class="racer">'+
-        '<img src="http://www.gravatar.com/avatar/'+user.gravatar_id+'" />'+
-        '</div>'
-      )
+        $('#lobby').append(
+          '<div id="lobby-'+user.screen_name+'" class="lobby">'+
+          '<img src="http://www.gravatar.com/avatar/'+user.gravatar_id+'" />'+
+          '<button id="'+(user.is_me?'my-button':'')+'">Not ready</button>'+
+          '</div>'
+        )
 
-      $('#lobby').append(
-        '<div id="lobby-'+user.screen_name+'" class="lobby">'+
-        '<img src="http://www.gravatar.com/avatar/'+user.gravatar_id+'" />'+
-        '<button id="'+(user.is_me?'my-button':'')+'">Not ready</button>'+
-        '</div>'
-      )
-
-      var ready = false
-      $('#my-button').click(function(ev) {
-        console.error(ready)
-        ev.preventDefault()
-        if(!ready) {
-          ready = true
-          $(this).text('Ready').addClass('ready')
-          self.socket.emit('ready')
-        }
-      })
-
+        var ready = false
+        $('#my-button').click(function(ev) {
+          console.error(ready)
+          ev.preventDefault()
+          if(!ready) {
+            ready = true
+            $(this).text('Ready').addClass('ready')
+            self.socket.emit('ready')
+          }
+        })
+      }
     })
 
     this.socket.on('start', function(question) {
@@ -88,16 +97,17 @@
 
       var timeout;
       document.addEventListener('keyup', function() {
-        if(!timeout) {
-          console.error('setting timeout')
-          timeout = setTimeout(function() {
-            console.error('timeout called')
-            form.submit()
-          }, 1000)
-        }
+        setTimeout(function() {
+          if(!timeout) {
+            console.error('setting timeout')
+            timeout = setTimeout(function() {
+              console.error('timeout called')
+              form.submit()
+            }, 1000)
+          }
+        }, 0)
       }, true)
       document.addEventListener('keydown', function() {
-        console.error('clearing timeout')
         if(timeout) { clearTimeout(timeout); timeout = null; } 
       }, true)
     })
