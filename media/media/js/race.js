@@ -86,7 +86,7 @@
         $('#lobby').append(
           '<div id="lobby-'+user.screen_name+'" class="lobby">'+
           '<img src="http://www.gravatar.com/avatar/'+user.gravatar_id+'" />'+
-          '<button id="'+(user.is_me?'my-button':'')+'">Not ready</button>'+
+          '<button id="'+(user.is_me?'my-button':'')+'">'+(user.ready ? 'Ready' : 'Not ready')+'</button>'+
           '</div>'
         )
 
