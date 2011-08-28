@@ -110,6 +110,7 @@ body > .loading { -moz-transition:opacity 0.3s linear, left 0.3s 0.01s linear; -
 body.loading > .loading { opacity:1.0; left:0; }
 
 .loading > .loading h2 { background:#CCC; padding:10px 20px; border-radius:3px; margin:0pt auto; margin-top:10%; width:300px; }
+.loading #race-loading-spinner { display:block; float:left; margin-top: 13px; width: 20px; margin-right: 10px; }
 
 .gravatar { height:48px; width:48px; position:relative; -webkit-box-shadow:0px -1px 10px rgba(0,0,0,0.3); }
 .gravatar:before { height:48px; width:48px; display:block; left:0px; top:0px; border-radius:3px; margin:2px; z-index:1; position:absolute; -webkit-box-shadow:0px -1px 5px rgba(0,0,0,0.8) inset, 0px 1px 5px rgba(255, 255, 255,0.8) inset; content:' '; }
@@ -123,8 +124,8 @@ body.loading > .loading { opacity:1.0; left:0; }
 #track .racer + .racer + .racer + .racer { left:184px; }
 
 body.lobby .racing { opacity:0.0; z-index:-1000; }
-body.racing .lobby { display:none; } 
-body.lobby .lobby { display:auto; } 
-body.racing .racing { display:auto; } 
+body.racing .lobby { display:none; }
+body.lobby .lobby { display:auto; }
+body.racing .racing { display:auto; }
 
 

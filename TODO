@@ -5,7 +5,7 @@ Needs
 -----
 
 / Basic interface (straight HTML/simple JS)
-/ Basic question set
++ Basic question set
 + Auth (GH-only?)
 - Homepage
 + Abiltity to code
@@ -15,6 +15,7 @@ Needs
 / Status modifiers
 + Submit new questions
 
+- Check DB indexes!
 
 + Data importer
 + Fix question submission to do JSON parse.
