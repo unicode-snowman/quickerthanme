@@ -23,8 +23,11 @@
           <h3>Your Races</h3>
 
           <div>
-              <a href="/races/create/" class="button">Start A New Race</a>
+              <a href="/races/create/" class="button green">Start A New Race</a>
+              <a href="/questions/add/" class="button green">Add a Question</a>
           </div>
+          <br class="clear_both">
+          <br>
 
           <h3>Started by you</h3>
           {% with user.initiated_race_set.all as your_races %}
