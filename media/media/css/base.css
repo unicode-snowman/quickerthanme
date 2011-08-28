@@ -216,7 +216,7 @@ textarea { width:530px; height:300px; display:block; border-radius:3px; border:1
 #modifiers .modifier .no_loops,
 #modifiers .modifier .no_conditionals { background:rgba(255, 0, 0, 0.5); }
 
-#modifiers .modifier:first-child:before { content:' '; display:block; position:absolute; top:-6px; left:-64px; width:32px; height:32px; background:no-repeat url('../img/modifier_callout.png'); }
+#modifiers .modifier:first-child:before { content:' '; display:block; position:absolute; top:-6px; left:-48px; width:32px; height:32px; background:no-repeat url('../img/modifier_callout.png'); }
 #modifiers .modifier { opacity:0.7; position:relative; }
 
 .grid { overflow:hidden; }

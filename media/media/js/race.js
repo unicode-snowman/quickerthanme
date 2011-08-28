@@ -148,6 +148,15 @@
       }) 
     })
 
+    var ordinal = [
+      'th'  // just in case.
+    , 'st'
+    , 'nd'
+    , 'rd'
+    , 'th'
+    , 'th'  // just in case.
+    ];
+
     this.socket.on('finished', function(place, screen_name, total_questions) {
       // trigger confetti!
       var target = $('#track-'+screen_name)
@@ -155,18 +164,27 @@
       target.animate({'top':current+'px'})
 
       console.error(place)
-      if(place === 0) {
+      if(place === 1) {
         $('#answer').html(
           '<h1>You won!</h1>'
         )
         $('body').addClass('confetti')
         setTimeout(function() {
-          var win = $('<p class="win"><a href="/questions/add/">We invite you to add a question!</a><p>')
+          var win = $('<div><h2>Congratulations! You placed first!</h2><p class="win"><a href="/questions/add/">We invite you to add a question!</a><p></div>')
           win.hide()
           $('#answer').append(win)
           win.fadeIn('slow')
           self.socket.emit('close')
         })
+      } else {
+        setTimeout(function() {
+          var win = $('<div><h2>Congratulations! You placed '+place+ordinal[place]+'!</h2><p class="win"><a href="/questions/add/">We invite you to add a question!</a><p></div>')
+          win.hide()
+          $('#answer').append(win)
+          win.fadeIn('slow')
+          self.socket.emit('close')
+        })
+
       }
     })
 
