@@ -7,12 +7,12 @@ Needs
 + Basic interface (straight HTML/simple JS)
 + Basic question set
 + Auth (GH-only?)
-- Homepage
++ Homepage
 + Abiltity to code
 + Store code runs
 + Joinable games
 + "Race track"
-/ Status modifiers
++ Status modifiers
 + Submit new questions
 
 + Check DB indexes!
@@ -26,10 +26,10 @@ Needs
 + Twitter widget
 + NKO widget
 + Waiting room
-- Make modifiers apply to the next question, not the current
++ Make modifiers apply to the next question, not the current
 
-- Make a Rules page
-- Show all current races at /races/
+/ Make a Rules page
++ Show all current races at /races/
 - Leaderboards
 
 

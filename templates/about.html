@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}About - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="generic_wrapper">
+        <h2>About QuickerThan.Me</h2>
+
+        <p>
+            Written by <a href="http://github.com/chrisdickinson">two</a>
+            <a href="http://github.com/toastdriven">guys</a> in Lawrence, KS
+            in 48 hours
+            for the <a href="http://nodeknockout.com/">2011 Node Knockout</a>.
+        </p>
+
+        <div>
+            <div class="gallery-image">
+                <a href="http://quickerthan.me/chrisdickinson/"><img src="http://www.gravatar.com/avatar/f70956bdb907c2f8b39ff624ea925ccd" alt="Chris Dickinson"></a>
+            </div>
+            <div class="gallery-image">
+                <a href="http://quickerthan.me/toastdriven/"><img src="http://www.gravatar.com/avatar/130de5dce3445b62f84fb4cfc86bfcd4" alt="Daniel Lindsley"></a>
+            </div>
+        </div>
+        <br class="clear_both">
+        <br>
+
+        <h3>Technologies Used</h3>
+
+        <p>An incomplete list of the tech we used:</p>
+
+        <ul>
+            <li><a href="http://nodejs.org/">Node.js</a></li>
+            <li><a href="http://postgresql.org/">Postgres</a></li>
+            <li><a href="https://github.com/chrisdickinson/escaperoute">Escaperoute</a></li>
+            <li><a href="https://github.com/chrisdickinson/plate">Plate</a></li>
+            <li><a href="https://github.com/chrisdickinson/ormnomnom">Ormnomnom</a></li>
+            <li><a href="http://defunkt.io/facebox/">Facebox</a></li>
+            <li><a href="http://jquery.org/">jQuery</a></li>
+            <li><a href="http://socket.io/">Socket.io</a></li>
+        </ul>
+    </div>
+{% endblock %}

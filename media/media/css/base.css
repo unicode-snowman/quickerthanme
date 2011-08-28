@@ -10,7 +10,7 @@ section, aside, header, footer { display: block; }
 label { display:block; font-weight: bold; }
 input[type="text"], input[type="number"], textarea { padding: 5px; }
 a.button { display: block; }
-ul { padding-left: 20px; }
+ul { padding-left: 20px; margin-bottom: 10px; }
 p { margin-bottom: 10px; }
 
 table { border-collapse: collapse; width: 100%; margin: 0 20px;}
@@ -126,7 +126,7 @@ header .username a, #logo a, #logo a:visited, #logo a:hover { color: #FFFFFF; }
 
 #user-details .username { font-size: 22px; }
 #user-details .user-meta { font-size: 16px; list-style: none; }
-#user-details .user-meta li { display: inline; margin-right: 10px; }
+#user-details .user-meta li { margin: 0 10px; border-width: 0; }
 
 #track-progress { height: 400px; }
 #track-progress .track { float: left; }
@@ -228,3 +228,9 @@ th, td { text-align:left; }
 
 .gallery-image { float: left; margin-left: 20px; border: solid 2px #333333; }
 .clear_both { clear: both; }
+
+.navigation { list-style: none; }
+.navigation dt { font-weight: bold; }
+.navigation dt, .navigation dd { display: inline; }
+.navigation dd { padding: 0px 10px; border-right: solid 1px #333333; }
+.navigation dd:last-child { border-right: solid 0px #333333; }

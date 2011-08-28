@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Rules - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="generic_wrapper">
+        <h2>Rules &amp; Gameplay</h2>
+
+        <h3>All Javascript</h3>
+
+        <p>
+            Questions &amp; solutions all use Javascript as the de facto
+            language. We may eventually add support for other languages.
+        </p>
+
+        <h3>No DOM / Outside Access</h3>
+
+        <p>
+            All solutions have no access to a DOM, the file-system, the
+            Internet, etc. You've got the full Javascript language at your
+            disposal.
+        </p>
+
+        <h3>Ten Questions</h3>
+
+        <p>
+            Each race will have 10 randomly chosen questions. Questions can
+            be added by anyone (but must be valid &amp; have a valid solution).
+        </p>
+
+        <h3>No Time Limit</h3>
+
+        <p>
+            You have as much time as you need to finish the race, but be warned
+            the other racers may go faster than you, which leads to...
+        </p>
+
+        <h3>Modifiers!</h3>
+
+        <p>
+            Get a question right fast enough &amp; watch the other competitors suffer on
+            the next question as one of the modifiers takes effect:
+        </p>
+
+        <ul>
+            <li>Normal (no gameplay modification)</li>
+            <li>No recursion (only regular loops allowed)</li>
+            <li>No loops (only recursion &amp; brute force)</li>
+            <li>No conditionals</li>
+            <li>One-liner! (only one statement allowed)</li>
+        </ul>
+
+        <p>
+            Modifiers are only in place for one question, after which they are
+            cleared for the subsequent question.
+        </p>
+    </div>
+{% endblock %}
