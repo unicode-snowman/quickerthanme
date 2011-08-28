@@ -1,0 +1,94 @@
+#!/usr/bin/env node
+
+var ormnomnom = require('ormnomnom')
+  , db = require('../config/db')
+  , models    = require('../lib/models')
+  , User      = models.models.User
+  , Question  = models.models.Question
+  , raw_question_data = require('../example_questions.js')
+
+// Set up the DB.
+db(ormnomnom)
+
+var global_chris = null
+  , global_daniel = null
+
+var create_question = function(question_list) {
+    // Ensure that shit is JSON.
+    var question_obj = question_list[0]
+    try {
+        JSON.parse(question_obj['input'])
+    }
+    catch(err) {
+        console.error("Jacked JSON: ", question_obj['input'])
+        process.exit()
+    }
+    try {
+        JSON.parse(question_obj['output'])
+    }
+    catch(err) {
+        console.error("Jacked JSON: ", question_obj['output'])
+        process.exit()
+    }
+
+    if(question_obj['screen_name'] === 'chrisdickinson') {
+        user = global_chris
+    }
+    else if(question_obj['screen_name'] === 'toastdriven') {
+        user = global_daniel
+    }
+
+    Question.objects.create({
+        input: question_obj['input']
+      , output: question_obj['output']
+      , comparison_type: question_obj['comparison_type']
+      , created_by: user
+      , created_on: +new Date
+      , description: question_obj['question']
+      , reference: question_obj['solution']
+    }).on('data', function(question) {
+        if(question_list.length > 1) {
+            create_question(question_list.slice(1))
+        }
+    })
+}
+
+var create_chris = function() {
+    User.objects.get({screen_name: 'chrisdickinson'}).on('data', function(chris) {
+        global_chris = chris
+        create_daniel()
+    }).on('error', function(err) {
+        User.objects.create({
+            screen_name: 'chrisdickinson',
+            name: 'Chris Dickinson',
+            email: 'chris@neversaw.us',
+            company: 'Mediaphormedia',
+            access_token: 'f73e2f1ac0ca2282cee3424b06bf388ce1b9d473',
+            gravatar_id: 'f70956bdb907c2f8b39ff624ea925ccd'
+        }).on('data', function(chris) {
+            global_chris = chris
+            create_daniel()
+        })
+    })
+}
+
+var create_daniel = function() {
+    User.objects.get({screen_name: 'toastdriven'}).on('data', function(daniel) {
+        global_daniel = daniel
+        create_question(raw_question_data)
+    }).on('error', function(err) {
+        User.objects.create({
+            screen_name: 'toastdriven',
+            name: 'Daniel Lindsley',
+            email: 'daniel@toastdriven.com',
+            company: 'Toast Driven',
+            access_token: 'ac2af8d1faff2602576d5444521c55b9c8b4f49d',
+            gravatar_id: '130de5dce3445b62f84fb4cfc86bfcd4'
+        }).on('data', function(daniel) {
+            global_daniel = daniel
+            create_question(raw_question_data)
+        })
+    })
+}
+
+create_chris()
