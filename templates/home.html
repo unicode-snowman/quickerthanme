@@ -18,17 +18,19 @@
         </p>
     </div>
 
-    <div class="generic-wrapper">
+    <div class="box grid">
+      <div>
         <h2>Who's Currently Racing</h2>
 
         {% with RACES as races %}
-        {% for race_state in races %}
-            <div>
+        {% for race_id, race_state in races|iteritems %}
                 {% for user in race_state.users %}
-                <img src="http://www.gravatar.com/avatar/{{ user.gravatar_id }}" alt="{{ user.name }}">
+                <div class="gravatar">
+                  <img src="http://www.gravatar.com/avatar/{{ user.user.gravatar_id }}" alt="{{ user.user.screen_name }}">
+                </div>
                 {% endfor %}
-            </div>
         {% endfor %}
         {% endwith %}
+      </div>
     </div>
 {% endblock %}
