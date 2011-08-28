@@ -19,14 +19,18 @@ Needs
 + Data importer
 + Fix question submission to do JSON parse.
 + Ensure that add a question doesn't have any ability to take down the server.
-- Race results
+/ Race results
     - What position
     - Stats
-- Think about Ghost race data model
++ Think about Ghost race data model
 + Twitter widget
 + NKO widget
 / Waiting room
 - Make modifiers apply to the next question, not the current
+
+- Make a Rules page
+- Show all current races at /races/
+- Leaderboards
 
 
 
@@ -35,7 +39,6 @@ Wants
 
 - Clear status modifiers (w/ a fast time)
 - Time Trial (against ghosts)
-- Leaderboards
 + Short URLs
 - Problem Solved animation
 - Replay
