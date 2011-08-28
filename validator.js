@@ -12,7 +12,7 @@ process.stdin.on('data', function(data) {
   result = JSON.stringify(result, input)
 
   // give this bitch a drain event. bitches love drain events.
-  if(result !=== undefined) {
+  if(result !== undefined) {
     if(!process.stdout.write(result)) 
       process.stdout.on('drain', process.exit.bind(process))
   } else {
