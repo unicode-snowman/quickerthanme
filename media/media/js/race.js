@@ -89,13 +89,13 @@
       if(!$('#track-'+user.screen_name).length) {
         self.add_racer(new Racer(user.screen_name), user.is_me)
         $('#track').append(
-          '<div id="track-'+user.screen_name+'" class="racer gravatar ghost">'+
+          '<div id="track-'+user.screen_name+'" class="racer gravatar '+(user.is_ghost?'ghost':'')+'">'+
           '<img src="http://www.gravatar.com/avatar/'+user.gravatar_id+'" />'+
           '</div>'
         )
 
         $('#lobby').append(
-          '<div id="lobby-'+user.screen_name+'" class="lobby gravatar ghost">'+
+          '<div id="lobby-'+user.screen_name+'" class="lobby gravatar '+(user.is_ghost?'ghost':'')+'">'+
           '<img src="http://www.gravatar.com/avatar/'+user.gravatar_id+'" />'+
           '<button id="'+(user.is_me?'my-button':'')+'">'+(user.ready ? 'Ready' : 'Not ready')+'</button>'+
           '</div>'
