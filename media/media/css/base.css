@@ -127,25 +127,25 @@ header a, header a:visited, header a:hover { color: #FFFFFF; }
 #competitor-icons .competitor { float: left; width: 50px; }
 .little-gravatar-image { height: 50px; width: 50px; }
 
-.state span { width:16px; display:inline-block; height:24px; background:#2f2f2f; position:relative; margin:0px 32px; bottom:-4px; 
+.state span { width:16px; display:inline-block; height:24px; background:#888; position:relative; margin:0px 32px; bottom:-4px; color:rgba(255,255,255,0.8); 
     border-radius:3px 3px 0px 0px;
-    border-top:3px solid #CCC;
+    border-top:3px solid #2f2f2f;
     z-index:1;
 }
-.state span:before { content:' '; display:inline-block; width:16px; height:16px; background:#2f2f2f; position:absolute; left:-16px; bottom:0px; 
+.state span:before { content:' '; display:inline-block; width:16px; height:16px; background:#888; position:absolute; left:-16px; bottom:0px;  color:rgba(255,255,255,0.8);
     border-radius:3px 0px 0px 0px;
-    border-top:3px solid #CCC;
+    border-top:3px solid #2f2f2f;
     z-index:0;
 }
-.state span:after { content:' '; display:inline-block; width:16px; height:8px; background:#2f2f2f;  position:absolute;right:-16px; bottom:0px; 
+.state span:after { content:' '; display:inline-block; width:16px; height:8px; background:#888;  position:absolute;right:-16px; bottom:0px;  color:rgba(255,255,255,0.8);
     border-radius:0px 3px 0px 0px;
-    border-top:3px solid #CCC;
+    border-top:3px solid #2f2f2f;
     z-index:0;
 }
 
-.state.place-1 span { background:blue; }
-.state.place-2 span:before { background:blue; }
-.state.place-3 span:after { background:blue; }
+.state.place-1 span { border-color:#3D7CB1;background:#86BCD6; }
+.state.place-2 span:before { border-color:#3D7CB1;background:#86BCD6; }
+.state.place-3 span:after { border-color:#3D7CB1;background:#86BCD6; }
 
 
 
