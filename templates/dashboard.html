@@ -10,7 +10,7 @@
             {% for outcome in outcomes %}
               {% with outcome.race as race %}
                 <li class="state state-{{ outcome.status }} place-{{ outcome.place }}">
-                  <a href="{{ race.get_absolute_url }}">Race #{{ race.pk }}</a>
+                  <span></span><a href="{{ race.get_absolute_url }}">Race #{{ race.pk }}</a>
                 </li>
               {% endwith %}
             {% endfor %}

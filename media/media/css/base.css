@@ -19,10 +19,16 @@ table th.numeric, table td.numeric { text-align: right; }
 
 textarea { font-size:14px; font-family:monospace; }
 
+a { color:#3D7CB1; text-decoration:none; }
+a:hover { text-decoration:none; }
 
 .form-row { overflow:hidden; }
 .form-row label { width:300px; float:left; }
 .form-row .hint { width:300px; float:left; }
+
+ul { list-style:none }
+ul li { margin-bottom:8px; border-bottom:1px dotted #CCC; padding-bottom:12px; }
+ul li:last-child { margin-bottom:0; border-bottom:none; padding-bottom:0; }
 
 header {
     width:300px;
