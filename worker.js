@@ -23,7 +23,7 @@ var app = connect.createServer(
       console.log('Data:', req.body.input, req.body.modifier, req.body.solution)
       child.stdin.write(
         JSON.stringify(
-          {input:req.body.input, solution:modifiers[req.body.modifier](req.body.solution)}
+          {input:req.body.input, solution:modifiers[req.body.modifier]('(function() { '+req.body.solution+'; })()')}
         )
       )
     } catch(err) {

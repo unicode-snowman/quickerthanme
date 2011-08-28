@@ -6,7 +6,6 @@ process.stdin.on('data', function(data) {
     , input   = packet.input
     , solution= packet.solution
 
-  solution = '(function() { '+solution+'; })()'
   var result = vm.runInNewContext(solution, {'input':JSON.parse(input)}, 'test')
   result = JSON.stringify(result)
 
