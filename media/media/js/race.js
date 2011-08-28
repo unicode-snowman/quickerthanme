@@ -140,6 +140,29 @@
       }
     })
 
+    this.socket.on('say', function(screen_name, what, is_me) {
+      var item = $('<pre class="chat"><span style="color:'+(is_me?'red':'blue')+'">'+screen_name+'</span>:<span class="text"></span></pre>')
+        , target = $('#chat')
+
+
+      console.log(what, is_me)
+      item.find('.text').text(what)
+      target.append(item)
+      target.find('.chat').length > 50 &&
+        target.find('.chat:first-child').remove()
+
+    })
+
+    $('#chatbox').keydown(function(ev) {
+      if(ev.keyCode === 13) {
+        ev.preventDefault()
+        var what = $(this).val()
+        console.log('sending ',what);
+        $(this).val('')
+        self.socket.emit('say', what) 
+      }
+    })
+
     this.socket.on('correct', function(question, question_no, total, screen_name) {
       console.error('RIGHT')
       var target = $('#track-'+screen_name)

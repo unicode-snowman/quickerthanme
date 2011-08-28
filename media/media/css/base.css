@@ -200,3 +200,7 @@ body.lobby .lobby { display:auto; }
 body.racing .racing { display:auto; }
 
 textarea { width:530px; height:300px; display:block; border-radius:3px; border:1px solid #CCC; }
+
+
+#chat { border:1px solid #CCC; width:530px; height:300px; overflow:scroll; padding:8px; }
+#chatbox { width:530px; margin-bottom:16px; border-bottom:1px solid #CCC; padding-bottom:16px; }
