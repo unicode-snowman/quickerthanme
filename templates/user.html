@@ -33,9 +33,12 @@
               {% with target_user.outcome_set.all as outcomes %}
                 {% for outcome in outcomes %}
                   {% with outcome.race as race %}
+                    {% if not race.ghost_parent %}
                     <li class="state state-{{ outcome.status }} place-{{ outcome.place }}">
                       <span></span><a href="{{ race.get_absolute_url }}">Race #{{ race.pk }}</a>
+                      <a href="{{ race.get_absolute_url }}ghost/">Run a ghost race</a>
                     </li>
+                    {% endif %}
                   {% endwith %}
                 {% endfor %}
               {% endwith %}
