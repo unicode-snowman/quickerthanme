@@ -55,15 +55,15 @@
                   <tbody>
                       <tr>
                           <th>Total Races:</th>
-                          <td class="numeric">{{ target_user.total_races }}</td>
+                          <td class="numeric">{% with target_user.total_races as total %}{{ total }} races{% endwith %}</td>
                       </tr>
                       <tr>
                           <th>Races Won:</th>
-                          <td class="numeric">{{ target_user.races_won }}</td>
+                          <td class="numeric">{% with target_user.races_won as total %}{{ total }} races{% endwith %}</td>
                       </tr>
                       <tr>
                           <th>Questions Solved:</th>
-                          <td class="numeric">{{ target_user.questions_solved }}</td>
+                          <td class="numeric">{% with target_user.questions_solved as total %}{{ total }} questions{% endwith %}</td>
                       </tr>
                       <tr>
                           <th>Average Time To Solve A Question:</th>
