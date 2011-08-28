@@ -221,3 +221,5 @@ textarea { width:530px; height:300px; display:block; border-radius:3px; border:1
 
 .grid { overflow:hidden; }
 .grid .gravatar { float:left; margin-right:16px; margin-bottom:16px; }
+
+th, td { text-align:left; }
