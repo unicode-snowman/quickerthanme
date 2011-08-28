@@ -1,13 +1,14 @@
 var app = require('./config/app')
   , nko = require('nko')('UO1b95S1RWINAw2i')
   , spawn = require('child_process').spawn
-
+  , worker_path = require('path').join(__dirname, 'worker.js')
 
 
 var create_validator_server = function(port) {
   var child_env = Object.create(process.env)
   child_env.PORT = port
-  var server = spawn('node', ['worker.js'], {
+
+  var server = spawn('node', [worker_path], {
       cwd:process.cwd()
     , env:child_env
   })
