@@ -9,35 +9,41 @@
         <div id="podium">
             {% with race.get_first_place as first_place %}
                 {% if first_place %}
+                {% with first_place.user as user %}
                 <div id="first-place">
-                    <img src="http://www.gravatar.com/avatar/{{ first_place.user.gravatar_id }}" alt="{{ first_place.user.name }}" class="gravatar-image">
+                    <img src="http://www.gravatar.com/avatar/{{ user.gravatar_id }}" alt="{{ user.name }}" class="gravatar-image">
                     <div>
                         <div class="big-first">1st</div>
-                        <div><a href="{{ first_place.user.get_absolute_url }}">{{ first_place.user.name }}</a></div>
+                        <div><a href="{{ user.get_absolute_url }}">{{ user.name }}</a></div>
                     </div>
                 </div>
+                {% endwith %}
                 {% endif %}
             {% endwith %}
             {% with race.get_second_place as second_place %}
                 {% if second_place %}
+                {% with second_place.user as user %}
                 <div id="second-place">
-                    <img src="http://www.gravatar.com/avatar/{{ second_place.user.gravatar_id }}" alt="{{ second_place.user.name }}" class="gravatar-image">
+                    <img src="http://www.gravatar.com/avatar/{{ user.gravatar_id }}" alt="{{ user.name }}" class="gravatar-image">
                     <div>
                         <div class="big-second">2nd</div>
-                        <div><a href="{{ second_place.user.get_absolute_url }}">{{ second_place.user.name }}</a></div>
+                        <div><a href="{{ user.get_absolute_url }}">{{ user.name }}</a></div>
                     </div>
                 </div>
+                {% endwith %}
                 {% endif %}
             {% endwith %}
             {% with race.get_third_place as third_place %}
                 {% if third_place %}
+                {% with third_place.user as user %}
                 <div id="third-place">
-                    <img src="http://www.gravatar.com/avatar/{{ third_place.user.gravatar_id }}" alt="{{ third_place.user.name }}" class="gravatar-image">
+                    <img src="http://www.gravatar.com/avatar/{{ user.gravatar_id }}" alt="{{ user.name }}" class="gravatar-image">
                     <div>
                         <div class="big-third">3rd</div>
-                        <div><a href="{{ third_place.user.get_absolute_url }}">{{ third_place.user.name }}</a></div>
+                        <div><a href="{{ user.get_absolute_url }}">{{ user.name }}</a></div>
                     </div>
                 </div>
+                {% endwith %}
                 {% endif %}
             {% endwith %}
         </div>
@@ -49,9 +55,11 @@
                 <thead>
                     <tr>
                         <th>Player</th>
-                        {% with race.question_set.all as questions %}
+                        {% with race.questions.all as questions %}
                         {% for question in questions %}
-                        <td>{{ forloop.counter }}</td>
+                        {% with question as the_q %}
+                        <td>#{{ forloop.counter }}</td>
+                        {% endwith %}
                         {% endfor %}
                         {% endwith %}
                     </tr>
@@ -59,14 +67,20 @@
                 <tbody>
                     {% with race.results as results %}
                     {% for outcome in results %}
+                    {% with outcome.user as user %}
                     <tr>
                         <th>
-                            <a href="{{ outcome.user.get_absolute_url }}">{{ outcome.user.name }}</a>
+                            <a href="{{ user.get_absolute_url }}">{{ user.name }}</a>
                         </th>
-                        {% for answer in outcome.answers %}
-                            <td>{{ answer.time_taken }}</td>
+                        {% with outcome.answers as answers %}
+                        {% for answer in answers %}
+                            {% with answer as the_a %}
+                            <td>{{ the_a.time_taken|floatformat:2 }} seconds</td>
+                            {% endwith %}
                         {% endfor %}
+                        {% endwith %}
                     </tr>
+                    {% endwith %}
                     {% endfor %}
                     {% endwith %}
                 </tbody>
