@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/font/font.css" />
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/base.css" />
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/facebox.css" />
     <script type="text/javascript" src="{{ MEDIA_URL }}js/spin.min.js"></script>
     <title>{% block title %}QuickerThan.Me{% endblock %}</title>
 </head>
@@ -73,9 +74,15 @@
     {% block javascript %}
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.min.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/plate.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/facebox.js"></script>
     <script type="text/javascript">
-      $(function() {
+        $(function() {
             $('#nkotarget').append('<iframe src="http://nodeknockout.com/iframe/snowman" frameborder="0" scrolling="no" allowtransparency="true" width="115" height="25"></iframe>')
+
+            $('a[rel*=facebox]').facebox({
+                loadingImage : '{{ MEDIA_URL }}img/loading.gif',
+                closeImage   : '{{ MEDIA_URL }}img/closelabel.png'
+            })
       })
     </script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/base.js"></script>

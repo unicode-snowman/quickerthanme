@@ -49,18 +49,18 @@ header > div {
 }
 
 .box            {
-    border:3px solid rgba(0,0,0,0.4);  border-radius:3px; background:#DEDEDE; 
+    border:3px solid rgba(0,0,0,0.4);  border-radius:3px; background:#DEDEDE;
     background-image: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#DEDEDE), to(#FFFFFF));
     background-image: -webkit-linear-gradient(top, #DEDEDE, #FFFFFF 25%);
     background-image: -moz-linear-gradient(top, #DEDEDE, #FFFFFF 25%);
     background-image: -ms-linear-gradient(top, #DEDEDE, #FFFFFF 25%);
     margin-bottom:32px;
-    position:relative; 
+    position:relative;
 }
-.box > div      { padding:16px; border-radius:3px; } 
+.box > div      { padding:16px; border-radius:3px; }
 
-.box h1, 
-.box h3, 
+.box h1,
+.box h3,
 .box h2 { border-bottom:1px solid #CCC; margin-bottom:16px; padding-bottom:8px; }
 
 .divider                { border-bottom:1px solid #CCC; margin-bottom:8px; padding-bottom:8px; }
@@ -134,7 +134,7 @@ header .username a, #logo a, #logo a:visited, #logo a:hover { color: #FFFFFF; }
 #competitor-icons .competitor { float: left; width: 50px; }
 .little-gravatar-image { height: 50px; width: 50px; }
 
-.state span { width:16px; display:inline-block; height:24px; background:#888; position:relative; margin:0px 32px; bottom:-4px; color:rgba(255,255,255,0.8); 
+.state span { width:16px; display:inline-block; height:24px; background:#888; position:relative; margin:0px 32px; bottom:-4px; color:rgba(255,255,255,0.8);
     border-radius:3px 3px 0px 0px;
     border-top:3px solid #2f2f2f;
     z-index:1;
@@ -223,3 +223,6 @@ textarea { width:530px; height:300px; display:block; border-radius:3px; border:1
 .grid .gravatar { float:left; margin-right:16px; margin-bottom:16px; }
 
 th, td { text-align:left; }
+
+.gallery-image { float: left; margin-left: 20px; border: solid 2px #333333; }
+.clear_both { clear: both; }
