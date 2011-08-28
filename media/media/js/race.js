@@ -102,6 +102,36 @@
       }
     })
 
+    var types = {
+      'no_recursion':'No Recursion'
+    , 'no_loops':'No Loops'
+    , 'no_conditionals':'No if statements'
+    , 'stmt_limit':'Statement limit'
+    }
+
+    var modifiers = $('#modifiers')
+
+    var flash = function(msg) {
+      var target = $('#flash')
+      target.text(msg)
+      target.addClass('flash')
+      setTimeout(target.removeClass.bind(target, 'flash'), 3000)
+    }
+
+    this.socket.on('sent_modifier', function(mod) {
+      flash('You just sent the "'+types[mod]+'" modifier to your competitors. Awesome!')
+    })
+
+    this.socket.on('modifier', function(mod, from) {
+      flash(from+' just hit you with the "'+types[mod]+'" modifier! Keep your eye on your modifier stack!')
+
+      var li = $('<li class="modifier '+mod+'">'+types[mod]+'</li>')
+      li.hide()
+      modifiers.append(li)
+      li.slideDown('fast')
+    })
+
+
     this.socket.on('start', function(question, total, server_start, server_start_offset) {
       $('body').removeClass('lobby').addClass('racing')
 
@@ -141,7 +171,7 @@
     })
 
     this.socket.on('say', function(screen_name, what, is_me) {
-      var item = $('<pre class="chat"><span style="color:'+(is_me?'red':'blue')+'">'+screen_name+'</span>:<span class="text"></span></pre>')
+      var item = $('<pre class="chat"><span style="color:'+(is_me?'red':'blue')+'">'+screen_name+'</span>: <span class="text"></span></pre>')
         , target = $('#chat')
 
 
@@ -168,6 +198,12 @@
       var target = $('#track-'+screen_name)
         , current = 24 + (64 * question_no)
 
+      var mod_li = modifiers.find('li:first-child')
+      mod_li.slideUp('fast', function() {
+        mod_li.remove()
+        modifiers.find('li').length === 0 &&
+          modifiers.append('<li class="modifier normal">no modifiers!</li>') 
+      })
       target.animate({'top':current+'px'})
       asking = false
       wrong.hide()

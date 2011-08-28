@@ -204,3 +204,19 @@ textarea { width:530px; height:300px; display:block; border-radius:3px; border:1
 
 #chat { border:1px solid #CCC; width:530px; height:300px; overflow:scroll; padding:8px; }
 #chatbox { width:530px; margin-bottom:16px; border-bottom:1px solid #CCC; padding-bottom:16px; }
+
+#flash { position:fixed; width:100%; background:rgba(128, 220, 164, 0.6); text-align:center; font-size:16px; top:0px; left:0px; opacity:0; -webkit-transition:opacity 0.2s ease-in; -moz-transition:opacity 0.2s ease-in; padding:16px; z-index:1000; }
+#flash.flash { opacity:1.0; }
+
+#modifiers { position:absolute; width:200px; right:-230px; padding:16px; background:white; border:2px solid rgba(0,0,0,0.4); border-radius:3px; top:24px; }
+#modifiers .modifier:first-child { opacity:1.0; }
+
+#modifiers .modifier .stmt_limit,
+#modifiers .modifier .no_recursion,
+#modifiers .modifier .no_loops,
+#modifiers .modifier .no_conditionals { background:rgba(255, 0, 0, 0.5); }
+
+#modifiers .modifier:first-child:before { content:' '; display:block; position:absolute; top:-6px; left:-64px; width:32px; height:32px; background:no-repeat url('../img/modifier_callout.png'); }
+#modifiers .modifier { opacity:0.7; position:relative; }
+
+
