@@ -41,6 +41,8 @@
       target.animate({'bottom':current+'%'})
     }) 
 
+
+
     var asking = false
     this.form.submit(function(ev) {
       ev.preventDefault()
@@ -109,12 +111,34 @@
       }) 
     })
 
-    this.socket.on('finished', function(place) {
-      // trigger confetti!  
+    this.socket.on('finished', function(place, screen_name) {
+      // trigger confetti!
+      var target = $('#track-'+screen_name)
+        , current = 100
+      target.animate({'bottom':current+'%'})
+
+      console.error(place)
+      if(place === 0) {
+        $('#answer').html(
+          '<h1>You won!</h1>'
+        )
+        $('body').addClass('confetti')
+        setTimeout(function() {
+          var win = $('<p class="win"><a href="/questions/add/">We invite you to add a question!</a><p>')
+          win.hide()
+          $('#answer').append(win)
+          win.fadeIn('slow')
+          self.socket.emit('close')
+        })
+      }
     })
 
-    this.socket.on('correct', function(question) {
-      console.error('RIGHT', question)
+    this.socket.on('correct', function(question, question_no, total, screen_name) {
+      console.error('RIGHT')
+      var target = $('#track-'+screen_name)
+        , current = ~~((question_no / total)*100)
+
+      target.animate({'bottom':current+'%'})
       asking = false
       wrong.hide()
       right.show()
