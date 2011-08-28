@@ -4,6 +4,7 @@ var burrito         = require('burrito')
   , MAX_LIFE        = process.env.MAX_LIFE || 10000
   , modifiers       = require('./lib/modifiers')
   , comparisons     = require('./lib/comparisons')
+  , validator_path  = require('path').join(__dirname, 'validator.js')
 
 // expects!
 //  - input       -- the input value to pass to the proposed solution
@@ -15,7 +16,7 @@ var app = connect.createServer(
     connect.bodyParser()
   , function(req, resp) {
     console.log('Started handling request...')
-    var child     = spawn('node', ['validator.js'])
+    var child     = spawn('node', [validator_path])
       , responded = false
     try {
       console.log('Writing to the child...')
