@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Active Races - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="generic-wrapper">
+        <h2>Active Races</h2>
+
+        <p>
+            Games that are currently in progress.
+        </p>
+
+        <ul>
+        {% if active_races|length %}
+            {% with active_races as grumble %}
+            {% for race in grumble %}
+                <li>
+                    <div>
+                        <h4><a href="{{ race.get_absolute_url }}">Race #{{ race.pk }}</a></h4>
+
+                        {% with race.racers.all as racers %}
+                            <ul>
+                            {% for racer in racers %}
+                                <li style="display: inline">
+                                    <a href="{{ racer.get_absolute_url }}">
+                                    <img src="http://www.gravatar.com/avatar/{{ racer.gravatar_id }}" alt="{{ racer.name }}" style="display: inline; width: 20px; height: 20px;">{{ racer.name }}</a>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        {% endwith %}
+                    </div>
+                </li>
+            {% endfor %}
+            {% endwith %}
+        {% else %}
+            <li>No active races.</li>
+        {% endif %}
+        </ul>
+    </div>
+{% endblock %}

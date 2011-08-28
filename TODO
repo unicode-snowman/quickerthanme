@@ -4,29 +4,28 @@ QuickerThan.Me
 Needs
 -----
 
-/ Basic interface (straight HTML/simple JS)
++ Basic interface (straight HTML/simple JS)
 + Basic question set
 + Auth (GH-only?)
 - Homepage
 + Abiltity to code
-/ Store code runs
++ Store code runs
 + Joinable games
-/ "Race track"
++ "Race track"
 / Status modifiers
 + Submit new questions
 
-- Check DB indexes!
-
++ Check DB indexes!
 + Data importer
 + Fix question submission to do JSON parse.
 + Ensure that add a question doesn't have any ability to take down the server.
-/ Race results
-    - What position
-    - Stats
++ Race results
+    + What position
+    + Stats
 + Think about Ghost race data model
 + Twitter widget
 + NKO widget
-/ Waiting room
++ Waiting room
 - Make modifiers apply to the next question, not the current
 
 - Make a Rules page
@@ -43,5 +42,5 @@ Wants
 + Short URLs
 - Problem Solved animation
 - Replay
-/ Profile Page
++ Profile Page
 - Timed contest
