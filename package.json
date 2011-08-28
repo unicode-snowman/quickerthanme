@@ -13,7 +13,7 @@
         "mime" :  "X.X.X",
         "oauth" :  "X.X.X",
         "qs" :  "X.X.X",
-        "socket.io-connect" :  "X.X.X",
+        "socket.io" :  "X.X.X",
         "connect": ">=1.4.0",
         "burrito" :   "0.2.X",
         "pg" :   "0.5.5",
