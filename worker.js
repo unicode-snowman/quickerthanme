@@ -35,6 +35,7 @@ var app = connect.createServer(
       child.stdout.on('data', function(data) {
         try {
           data = data.toString('utf8')
+          console.log("Comparing using ", req.body.comparison_type, ": ", JSON.parse(req.body.output), JSON.parse(data))
           if(comparisons[req.body.comparison_type](JSON.parse(req.body.output), JSON.parse(data))) {
             responded = true
             resp.writeHead(200, {'Content-Type':'text/plain'})
