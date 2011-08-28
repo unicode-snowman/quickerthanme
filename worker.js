@@ -25,7 +25,6 @@ var app = connect.createServer(
       resp.writeHead(400, {'Content-Type':'text/plain'})
       resp.end('bad')
     }
-    console.error(req.body)
 
     try {
       child.stdin.end(
