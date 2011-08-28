@@ -17,7 +17,7 @@
       , make_form = function() {
         var form = $('<form method="POST" action="./solution/"></form>')
         form.append('<textarea name="answer">return input;</textarea>')
-        form.append('<input type="submit" value="Submit" />')
+        form.append('<input type="submit" value="Submit" class="button" />')
         form.submit(function(ev) {
           ev.preventDefault()
           $.post('./solution/', form.serialize())
@@ -36,9 +36,9 @@
 
     this.socket.on('progress', function(screen_name, question_no, total) {
       var target = $('#track-'+screen_name)
-        , current = ~~((question_no / total)*100)
+        , current = 24+(question_no * 64)
 
-      target.animate({'bottom':current+'%'})
+      target.animate({'top':current+'px'})
     }) 
 
 
@@ -78,10 +78,8 @@
       if(!$('#track-'+user.screen_name).length) {
         self.add_racer(new Racer(user.screen_name), user.is_me)
         $('#track').append(
-          '<div class="track">'+
           '<div id="track-'+user.screen_name+'" class="racer gravatar">'+
           '<img src="http://www.gravatar.com/avatar/'+user.gravatar_id+'" />'+
-          '</div>'+
           '</div>'
         )
 
@@ -104,8 +102,15 @@
       }
     })
 
-    this.socket.on('start', function(question) {
+    this.socket.on('start', function(question, total, server_start, server_start_offset) {
       $('body').removeClass('lobby').addClass('racing')
+
+      console.log(total)
+      for(var i = 0; i < total; ++i) {
+        $('#track').prepend($('<div class="question '+(i === total-1 ? 'last' : '')+'"></div>'))
+      }
+
+
       make_form()($('#answer'))
       desc.fadeOut('fast', function() {
         desc.text(question.description)
@@ -113,11 +118,11 @@
       }) 
     })
 
-    this.socket.on('finished', function(place, screen_name) {
+    this.socket.on('finished', function(place, screen_name, total_questions) {
       // trigger confetti!
       var target = $('#track-'+screen_name)
-        , current = 100
-      target.animate({'bottom':current+'%'})
+        , current = 24 + (64 * total_questions)
+      target.animate({'top':current+'px'})
 
       console.error(place)
       if(place === 0) {
@@ -138,9 +143,9 @@
     this.socket.on('correct', function(question, question_no, total, screen_name) {
       console.error('RIGHT')
       var target = $('#track-'+screen_name)
-        , current = ~~((question_no / total)*100)
+        , current = 24 + (64 * question_no)
 
-      target.animate({'bottom':current+'%'})
+      target.animate({'top':current+'px'})
       asking = false
       wrong.hide()
       right.show()

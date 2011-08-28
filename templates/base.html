@@ -17,21 +17,28 @@
 
             <div id="user-details">
             {% if user %}
-                <div class="gravatar">
+                <div class="gravatar left">
                     <img src="http://www.gravatar.com/avatar/{{ user.gravatar_id }}" alt="Avatar" class="big-gravatar-image">
                 </div>
-                <div class="username">
-                    <a href="{{ user.get_absolute_url }}">{{ user.name }}</a>
+                <div class="right">
+                  <div class="username">
+                      <a href="{{ user.get_absolute_url }}">{{ user.name }}</a>
+                  </div>
+                  <ul class="user-meta">
+                      <!-- <li><a href="/leaderboards/">Leaderboards</a></li> -->
+                      <li><a href="/logout/">Logout</a></li>
+                  </ul>
                 </div>
-                <ul class="user-meta">
-                    <!-- <li><a href="/leaderboards/">Leaderboards</a></li> -->
-                    <li><a href="/logout/">Logout</a></li>
-                </ul>
             {% else %}
                 <a href="/auth/github/" class="button github-login">Login With GitHub</a>
             {% endif %}
             </div>
         </div>
+
+        {% block extra_header %}
+
+        {% endblock %}
+
         {% endblock %}
     </header>
 
@@ -53,8 +60,7 @@
             <a href="http://nodeknockout.com/teams/snowman">☃</a> &ndash;
             A <a href="http://nodeknockout.com/">Node Knockout</a> competition entry.
         </div>
-        <div>
-            <iframe src="http://nodeknockout.com/iframe/snowman" frameborder=0 scrolling=no allowtransparency=true width=115 height=25></iframe>
+        <div id="nkotarget">
         </div>
     </footer>
     {% block footer_all %}{% endblock %}
@@ -63,13 +69,7 @@
     <script type="text/javascript" src="{{ MEDIA_URL }}js/plate.min.js"></script>
     <script type="text/javascript">
       $(function() {
-        $('textarea').each(function(i, el) {
-          $(el).css({'position':'relative', 'width':'600px', 'height':'400px'})
-        });
-
-        // something incredibly janky this way comes.
-        // apologies, world at large.
-        (function inject() { var baseUrl="http://ajaxorg.github.com/ace/build/textarea/src/"; function load(path, module, callback) { path = baseUrl + path; if (!load.scripts[path]) { load.scripts[path] = { loaded: false, callbacks: [ callback ] }; var head = document.getElementsByTagName('head')[0]; var s = document.createElement('script'); function c() { if (window.__ace_shadowed__ && window.__ace_shadowed__.define.modules[module]) { load.scripts[path].loaded = true; load.scripts[path].callbacks.forEach(function(callback) { callback(); }); } else { setTimeout(c, 50); } }; s.src = path; head.appendChild(s); c(); } else if (load.scripts[path].loaded) { callback(); } else { load.scripts[path].callbacks.push(callback); } }; load.scripts = {}; window.__ace_shadowed_load__ = load; load('ace.js', 'text!ace/css/editor.css', function() { var ace = window.__ace_shadowed__; ace.options = { mode:'javascript',theme:'textmate',gutter:'true',fontSize:'12px',softWrap:'off',showPrintMargin:'false',useSoftTabs:'true',showInvisibles:'true' }; var Event = ace.require('pilot/event'); var areas = document.getElementsByTagName("textarea"); for (var i = 0; i < areas.length; i++) { setTimeout(function(area) { ace.transformTextarea(area); }.bind({}, areas[i]), 0); /* Event.addListener(areas[i], "click", function(e) { if (e.detail > 0) { ace.transformTextarea(e.target); } }); */ } });})()
+            $('#nkotarget').append('<iframe src="http://nodeknockout.com/iframe/snowman" frameborder="0" scrolling="no" allowtransparency="true" width="115" height="25"></iframe>')
       })
     </script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/base.js"></script>

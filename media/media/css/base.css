@@ -9,7 +9,6 @@ img { border-width: 0; display: block; }
 section, aside, header, footer { display: block; }
 label { display:block; font-weight: bold; }
 input[type="text"], input[type="number"], textarea { padding: 5px; }
-button, .button { padding: 5px 20px; border-radius: 10px; border-style: solid; border-width: 2px; margin: 0 5px 5px; color: #FFFFFF; font-weight:bold; font-size: 16px; text-shadow: #888888 1px 1px 2px; background-color: #888888; }
 a.button { display: block; }
 ul { padding-left: 20px; }
 
@@ -55,7 +54,8 @@ header > div {
     background-image: -webkit-linear-gradient(top, #DEDEDE, #FFFFFF 25%);
     background-image: -moz-linear-gradient(top, #DEDEDE, #FFFFFF 25%);
     background-image: -ms-linear-gradient(top, #DEDEDE, #FFFFFF 25%);
-    margin-bottom:32px; 
+    margin-bottom:32px;
+    position:relative; 
 }
 .box > div      { padding:16px; border-radius:3px; } 
 
@@ -73,6 +73,7 @@ header > div {
 footer { position:absolute; bottom:-100px; left:316px; margin-top:100px; }
 .centerriffic { width: 900px; position: relative; margin: auto; text-align: left; }
 
+button, .button { padding: 5px 20px; border-radius:3px; border-style: solid; border-width:1px; margin: 0 5px 5px; color: #FFFFFF; font-weight:bold; font-size: 16px; text-shadow: #888888 1px 1px 2px; background-color: #888888; }
 button, .button {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#666666), to(#888888));
     background-image: -webkit-linear-gradient(top, #666666, #888888);
@@ -113,14 +114,14 @@ button.green:active, .button.green:active {
     background-image: -ms-linear-gradient(top, #00FF00, #00CC00);
 }
 
-header a, header a:visited, header a:hover { color: #FFFFFF; }
+header .username a, #logo a, #logo a:visited, #logo a:hover { color: #FFFFFF; }
+
+
 #logo { }
 #logo h1 { font-size:1.8em; color: #FFFFFF; text-shadow: #000000 4px 4px 0px; }
 #logo h1 a, #logo h1 a:visited, #logo h1 a:hover { color: #FFFFFF; text-decoration: none; }
-#user-details { float: right; width: 300px; overflow: hidden; }
-#user-details .big-gravatar { float: left; margin: 0 10px 0 0; }
-#user-details .big-gravatar img { border: solid 1px #FFFFFF; }
-.big-gravatar-image { height: 50px; width: 50px; }
+#user-details { width: 300px; overflow: hidden; }
+
 #user-details .username { font-size: 22px; }
 #user-details .user-meta { font-size: 16px; list-style: none; }
 #user-details .user-meta li { display: inline; margin-right: 10px; }
@@ -181,17 +182,21 @@ body.loading > .loading { opacity:1.0; left:0; }
 .gravatar { height:48px; width:48px; position:relative; -webkit-box-shadow:0px -1px 10px rgba(0,0,0,0.3); }
 .gravatar:before { height:48px; width:48px; display:block; left:0px; top:0px; border-radius:3px; margin:2px; z-index:1; position:absolute; -webkit-box-shadow:0px -1px 5px rgba(0,0,0,0.8) inset, 0px 1px 5px rgba(255, 255, 255,0.8) inset; content:' '; }
 .gravatar img { height:100%; width:100%; border-radius:3px; border:2px solid #222; position:absolute; top:0px; left:0px; }
+.gravatar button { margin-left:64px; }
 
-#track  { height:100%; position:absolute; height:100%; width:194px; background-color:#333; padding:10px; }
-#race   { margin-left:230px; }
-#track .racer { display:inline-block; position:absolute; left:10px; margin-right:4px; bottom:0%; }
-#track .racer + .racer { left:68px; }
-#track .racer + .racer + .racer { left:126px; }
-#track .racer + .racer + .racer + .racer { left:184px; }
+
+#track  { position:relative; width:276px; }
+#race   { }
+
+#track .question { display:block; height:64px; background:repeat-x url('../img/track_bg.png'); }
+#track .racer { display:inline-block; margin-right:4px; margin-top:0%; position:absolute; top:24px; left:10px; }
+#track .racer + .racer { left:76px; }
+#track .racer + .racer + .racer { left:141px; }
+#track .racer + .racer + .racer + .racer { left:205px; }
 
 body.lobby .racing { display:none; }
 body.racing .lobby { display:none; }
 body.lobby .lobby { display:auto; }
 body.racing .racing { display:auto; }
 
-
+textarea { width:530px; height:300px; display:block; border-radius:3px; border:1px solid #CCC; }
