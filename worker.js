@@ -9,7 +9,7 @@ var burrito         = require('burrito')
 //  - input       -- the input value to pass to the proposed solution
 //  - solution    -- the proposed solution.
 //  - comparison  -- what function to use to compare the result to the expected result one of [strict, float, set]
-//  - expected    -- the expected value (as a JSON encoded string)
+//  - output      -- the expected value (as a JSON encoded string)
 //  - modifier    -- the current modifier for the proposed solution one of [no_recursion, no_loops, no_conditionals, stmt_limit, normal]
 var app = connect.createServer(
     connect.bodyParser()
@@ -35,9 +35,9 @@ var app = connect.createServer(
     child.stdout.on('data', function(data) {
       console.log('Got data back...')
       data = data.toString('utf8')
-      console.log(data)
       try {
-        if(comparisons[req.body.comparison](JSON.parse(req.body.expected), JSON.parse(data))) {
+        console.error('and ze result is', comparisons[req.body.comparison_type](JSON.parse(req.body.output), JSON.parse(data)))
+        if(comparisons[req.body.comparison_type](JSON.parse(req.body.output), JSON.parse(data))) {
           responded = true
           resp.writeHead(200, {'Content-Type':'text/plain'})
           resp.end('okay')
