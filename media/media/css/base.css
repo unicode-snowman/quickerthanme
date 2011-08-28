@@ -122,7 +122,7 @@ body.loading > .loading { opacity:1.0; left:0; }
 #track .racer + .racer + .racer { left:126px; }
 #track .racer + .racer + .racer + .racer { left:184px; }
 
-body.lobby .racing { display:none; }
+body.lobby .racing { opacity:0.0; z-index:-1000; }
 body.racing .lobby { display:none; } 
 body.lobby .lobby { display:auto; } 
 body.racing .racing { display:auto; } 

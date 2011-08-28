@@ -14,6 +14,22 @@
     this.placed = []
     this.socket = io.connect()
     var self = this
+      , make_form = function() {
+        var form = $('<form method="POST" action="./solution/"></form>')
+        form.append('<textarea name="answer">return input;</textarea>')
+        form.append('<input type="submit" value="Submit" />')
+        form.submit(function(ev) {
+          ev.preventDefault()
+          $.post('./solution/', form.serialize())
+        })
+        form.find('textarea').css({position:'relative', width:'600px', height:'400px'})
+        var ace  = window.__ace_shadowed__
+        return function(to) {
+          to.html('')
+          to.append(form)
+          setTimeout(function() { ace && ace.transformTextarea(form.find('textarea').eq(0)[0]) }, 0)
+        }
+      }
 
     this.socket.on('whois', function(ev) {
       console.log('WHOIS', ev)
@@ -76,7 +92,6 @@
 
         var ready = false
         $('#my-button').click(function(ev) {
-          console.error(ready)
           ev.preventDefault()
           if(!ready) {
             ready = true
@@ -88,28 +103,12 @@
     })
 
     this.socket.on('start', function(question) {
-      console.error('STARTING', question)
-
+      $('body').removeClass('lobby').addClass('racing')
+      make_form()($('#answer'))
       desc.fadeOut('fast', function() {
         desc.text(question.description)
         desc.fadeIn('fast')
       }) 
-
-      var timeout;
-      document.addEventListener('keyup', function() {
-        setTimeout(function() {
-          if(!timeout) {
-            console.error('setting timeout')
-            timeout = setTimeout(function() {
-              console.error('timeout called')
-              form.submit()
-            }, 1000)
-          }
-        }, 0)
-      }, true)
-      document.addEventListener('keydown', function() {
-        if(timeout) { clearTimeout(timeout); timeout = null; } 
-      }, true)
     })
 
     this.socket.on('finished', function(place) {
@@ -125,6 +124,7 @@
       desc.fadeOut('fast', function() {
         desc.text(question.description)
         desc.fadeIn('fast')
+        make_form()($('#answer'))
       }) 
     })
 
