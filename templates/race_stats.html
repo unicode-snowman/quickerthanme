@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Race #{{ race.pk}} Stats - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="generic-wrapper">
+        <h2>Race #{{ race.pk}} Stats</h2>
+
+        <div id="podium">
+            {% with race.outcomes.all as outcomes %}
+                {% for outcome in outcomes|slice:"0:3" %}
+                <div id="place-{{ forloop.counter }}">
+                    <img src="http://www.gravatar.com/avatar/{{ outcome.user.gravatar_id }}" alt="Avatar" class="gravatar-image">
+                </div>
+                {% endfor %}
+            {% endwith %}
+        </div>
+    </div>
+{% endblock %}
