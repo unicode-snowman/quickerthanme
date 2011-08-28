@@ -12,13 +12,13 @@ Needs
 / Store code runs
 + Joinable games
 / "Race track"
-- Timed contest
 / Status modifiers
-/ Submit new questions
++ Submit new questions
 
 
-- Fix question submission to do JSON parse.
-- Ensure that add a question doesn't have any ability to take down the server.
++ Data importer
++ Fix question submission to do JSON parse.
++ Ensure that add a question doesn't have any ability to take down the server.
 - Race results
     - What position
     - Stats
@@ -40,3 +40,4 @@ Wants
 - Problem Solved animation
 - Replay
 / Profile Page
+- Timed contest

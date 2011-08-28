@@ -18,16 +18,16 @@
         <form method="POST" action="" id="add-question">
             <div class="form-row">
                 <label for="id_description">Question Description:</label>
-                <textarea id="id_description" name="description"></textarea>
+                <textarea id="id_description" name="description">{{ description }}</textarea>
             </div>
             <div class="form-row">
                 <label for="id_reference">Reference Implementation:</label>
-                <textarea id="id_reference" name="reference"></textarea>
+                <textarea id="id_reference" name="reference">{{ reference }}</textarea>
                 <div class="hint">A working Javascript solution. Should be identical what would be entered in during the competition.</div>
             </div>
             <div class="form-row">
                 <label for="id_input">Validated Input:</label>
-                <input type="text" id="id_input" name="input">
+                <input type="text" id="id_input" name="input" value="{{ input }}">
                 <div class="hint">
                     A valid bit of JSON (string, integer, float, Array, etc) that will be the test input.<br>
                     Will <strong>NOT</strong> be shown to the user.
@@ -35,7 +35,7 @@
             </div>
             <div class="form-row">
                 <label for="id_output">Validated Output:</label>
-                <input type="text" id="id_output" name="output">
+                <input type="text" id="id_output" name="output" value="{{ output }}">
                 <div class="hint">
                     A valid bit of JSON (string, integer, float, Array, etc) that is the correct output for the above input.
                 </div>
@@ -43,9 +43,9 @@
             <div class="form-row">
                 <label for="id_comparison_type">Comparison Type:</label>
                 <select id="id_comparison_type" name="comparison_type">
-                    <option value="strict" selected="selected">Strictly Equal (===)</option>
-                    <option value="set">Values in Set (non-deterministic ordering)</option>
-                    <option value="float">Float (to 6 decimal places)</option>
+                    <option value="strict" {% if comparison_type == 'strict' or not comparison_type %}selected="selected"{% endif %}>Strictly Equal (===)</option>
+                    <option value="set" {% if comparison_type == 'set' %}selected="selected"{% endif %}>Values in Set (non-deterministic ordering)</option>
+                    <option value="float" {% if comparison_type == 'float' %}selected="selected"{% endif %}>Float (to 6 decimal places)</option>
                 </select>
                 <div class="hint">
                     How the competitor's response should be compared to your output.
