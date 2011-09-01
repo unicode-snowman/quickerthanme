@@ -1,0 +1,105 @@
+#!/usr/bin/env node
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'local';
+var MAX_HISTORY = parseInt(process.env.NODE_MAX_HISTORY || 1000, 10);
+isNaN(MAX_HISTORY) && (MAX_HISTORY = 1000);
+
+if([
+    process.argv.indexOf('-h')
+  , process.argv.indexOf('-?')
+  , process.argv.indexOf('--help')]
+  .filter(function(val) { return val > -1 }).length) {
+  console.error([
+    'bin/shell'
+  , ''
+  , '     to set environment, use ``NODE_ENV=local|production bin/shell``.'
+  , ''
+  , '     this script automatically loads the quickerthanme app, creates the appropriate'
+  , '     connection via ormnomnom. all models (e.g., ``User``) are globally available.'
+  , ''
+  , '     globals:'
+  , ''
+  , '     ``storename[, noisy]``: a callback generator that stores the results of an'
+  , '                               async call globally in the provided name. if noisy is'
+  , '                               truthy, when the callback is triggered it will log to'
+  , '                               the screen. results are also available under `store._`'
+  , ''
+  , '                               the screen. results are also available under `store._`'
+  , '                               the error result will be available as `store.err`, and'
+  , '                               the data result will be available as `store.data`.'
+  , ''
+  , '     ``$``:                    a shorthand for ``store``. results are available under'
+  , '                               ``$._``.'
+  , ''
+  ].join('\n'))
+  process.exit(1)
+}
+
+// different colors for local, dev, and production
+// NOTE: unfortunately these don't work as the REPL prompt.
+
+var color = {
+    'local':'\x1b[32m'
+  , 'development':'\x1b[33m'
+  , 'production':'\x1b[31m' }[process.env.NODE_ENV] || '\x1b[34m'
+
+var repl = require('repl').start
+var app = require('../config/app')
+var models = {}
+
+// REPL info
+
+console.log('hit CTRL-C twice to exit.');
+
+// Make models globally available
+
+var app_models = require('../lib/models').models
+Object.keys(app_models).forEach(function(name) {
+    models[name] = this[name]
+}, app_models)
+
+// start the REPL
+
+var repl = repl('quickerthanme '+process.env.NODE_ENV+'> ')
+
+
+// create the REPL global context.
+
+repl.context.__proto__ = models
+repl.context.store = function(name, loud) {
+  if(typeof(name) === 'boolean') {
+    loud = !!name
+    name = undefined
+  }
+  var as = name ? function() {
+    repl.context[name] = arguments
+    repl.context.$.err = arguments[0]
+    repl.context.$.data = arguments[1]
+  } : function() {
+    repl.context.$._ = repl.context.store._ = arguments
+    repl.context.$.err = repl.context.store.err = arguments[0]
+    repl.context.$.data = repl.context.store.data = arguments[1]
+  }
+
+  return function() {
+    if(loud)
+      name ? console.log('got '+name+'!\n') : console.log('got')
+    as.apply({}, arguments)
+  };
+}
+repl.context.$ = repl.context.store()
+
+var path = require('path')
+var historyFilename = path.join(process.cwd(), '.node_history')
+var fs = require('fs')
+
+try {
+  history = JSON.parse(fs.readFileSync(historyFilename, 'utf8'))
+  repl.rli.history = history
+} catch(err) {
+}
+
+repl.rli.addListener('close', function() {
+  fs.writeFileSync(historyFilename, JSON.stringify(repl.rli.history.slice(0, MAX_HISTORY)))
+})
+
