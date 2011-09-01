@@ -7,26 +7,36 @@
       <div>
         <h2>Add A Question</h2>
 
-        {% if errors|length %}
+        {% if errors.all.length %}
             <div class="errors">
                 <ul>
-                {% for error in errors %}
+                {% for error in errors.all %}
                     <li>{{ error }}</li>
                 {% endfor %}
                 </ul>
             </div>
         {% endif %}
         <form method="POST" action="" id="add-question">
+
             <div class="form-row">
+                {% for error in errors.description %}
+                  <p class="error">{{ error }}</p>
+                {% endfor %}
                 <label for="id_description">Question Description:</label>
                 <textarea id="id_description" name="description">{{ form.description }}</textarea>
             </div>
             <div class="form-row">
+                {% for error in errors.reference %}
+                  <p class="error">{{ error }}</p>
+                {% endfor %}
                 <label for="id_reference">Reference Implementation:</label>
                 <textarea id="id_reference" name="reference">{{ form.reference|default:"return input;" }}</textarea>
                 <div class="hint">A working Javascript solution. Should be identical what would be entered in during the competition.</div>
             </div>
             <div class="form-row">
+                {% for error in errors.input %}
+                  <p class="error">{{ error }}</p>
+                {% endfor %}
                 <label for="id_input">Validated Input:</label>
                 <input type="text" id="id_input" name="input" value="{{ form.input }}">
                 <div class="hint">
@@ -35,6 +45,9 @@
                 </div>
             </div>
             <div class="form-row">
+                {% for error in errors.output %}
+                  <p class="error">{{ error }}</p>
+                {% endfor %}
                 <label for="id_output">Validated Output:</label>
                 <input type="text" id="id_output" name="output" value="{{ form.output }}">
                 <div class="hint">
@@ -42,6 +55,9 @@
                 </div>
             </div>
             <div class="form-row">
+                {% for error in errors.comparison_type %}
+                  <p class="error">{{ error }}</p>
+                {% endfor %}
                 <label for="id_comparison_type">Comparison Type:</label>
                 <select id="id_comparison_type" name="comparison_type">
                     <option value="strict" {% if form.comparison_type == 'strict' or not form.comparison_type %}selected="selected"{% endif %}>Strictly Equal (===)</option>
