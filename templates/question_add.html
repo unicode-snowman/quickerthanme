@@ -3,10 +3,11 @@
 {% block title %}Add Question - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div class="generic-wrapper">
+    <div class="box">
+      <div>
         <h2>Add A Question</h2>
 
-        {% if errors.length %}
+        {% if errors|length %}
             <div class="errors">
                 <ul>
                 {% for error in errors %}
@@ -18,16 +19,16 @@
         <form method="POST" action="" id="add-question">
             <div class="form-row">
                 <label for="id_description">Question Description:</label>
-                <textarea id="id_description" name="description">{{ description }}</textarea>
+                <textarea id="id_description" name="description">{{ form.description }}</textarea>
             </div>
             <div class="form-row">
                 <label for="id_reference">Reference Implementation:</label>
-                <textarea id="id_reference" name="reference">{{ reference }}</textarea>
+                <textarea id="id_reference" name="reference">{{ form.reference|default:"return input;" }}</textarea>
                 <div class="hint">A working Javascript solution. Should be identical what would be entered in during the competition.</div>
             </div>
             <div class="form-row">
                 <label for="id_input">Validated Input:</label>
-                <input type="text" id="id_input" name="input" value="{{ input }}">
+                <input type="text" id="id_input" name="input" value="{{ form.input }}">
                 <div class="hint">
                     A valid bit of JSON (string, integer, float, Array, etc) that will be the test input.<br>
                     Will <strong>NOT</strong> be shown to the user.
@@ -35,7 +36,7 @@
             </div>
             <div class="form-row">
                 <label for="id_output">Validated Output:</label>
-                <input type="text" id="id_output" name="output" value="{{ output }}">
+                <input type="text" id="id_output" name="output" value="{{ form.output }}">
                 <div class="hint">
                     A valid bit of JSON (string, integer, float, Array, etc) that is the correct output for the above input.
                 </div>
@@ -43,9 +44,9 @@
             <div class="form-row">
                 <label for="id_comparison_type">Comparison Type:</label>
                 <select id="id_comparison_type" name="comparison_type">
-                    <option value="strict" {% if comparison_type == 'strict' or not comparison_type %}selected="selected"{% endif %}>Strictly Equal (===)</option>
-                    <option value="set" {% if comparison_type == 'set' %}selected="selected"{% endif %}>Values in Set (non-deterministic ordering)</option>
-                    <option value="float" {% if comparison_type == 'float' %}selected="selected"{% endif %}>Float (to 6 decimal places)</option>
+                    <option value="strict" {% if form.comparison_type == 'strict' or not form.comparison_type %}selected="selected"{% endif %}>Strictly Equal (===)</option>
+                    <option value="set" {% if form.comparison_type == 'set' %}selected="selected"{% endif %}>Values in Set (non-deterministic ordering)</option>
+                    <option value="float" {% if form.comparison_type == 'float' %}selected="selected"{% endif %}>Float (to 6 decimal places)</option>
                 </select>
                 <div class="hint">
                     How the competitor's response should be compared to your output.
@@ -55,5 +56,6 @@
                 <button type="submit" class="green">Submit!</button>
             </div>
         </form>
+      </div>
     </div>
 {% endblock %}

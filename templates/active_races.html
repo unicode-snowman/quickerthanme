@@ -3,7 +3,8 @@
 {% block title %}Active Races - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div class="generic-wrapper">
+    <div class="box">
+      <div>
         <h2>Active Races</h2>
 
         <p>
@@ -11,9 +12,7 @@
         </p>
 
         <ul>
-        {% if active_races|length %}
-            {% with active_races as grumble %}
-            {% for race in grumble %}
+            {% for race in active_races %}
                 <li>
                     <div>
                         <h4><a href="{{ race.get_absolute_url }}">Race #{{ race.pk }}</a></h4>
@@ -30,11 +29,10 @@
                         {% endwith %}
                     </div>
                 </li>
+            {% empty %}
+              <li>No active races.</li>
             {% endfor %}
-            {% endwith %}
-        {% else %}
-            <li>No active races.</li>
-        {% endif %}
         </ul>
+      </div>
     </div>
 {% endblock %}

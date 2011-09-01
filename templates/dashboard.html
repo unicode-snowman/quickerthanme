@@ -30,13 +30,11 @@
           <br>
 
           <h3>Started by you</h3>
-          {% with user.initiated_race_set.all as your_races %}
           <ul id="your-races">
-              {% for race in your_races %}
+              {% for race in user.initiated_race_set.all reversed %}
               <li><a href="{{ race.get_absolute_url }}">Race #{{ race.pk }}</a> &ndash; Won/Lost/Quit</a></li>
               {% endfor %}
           </ul>
-          {% endwith %}
         </div>
     </div>
 {% endblock %}
