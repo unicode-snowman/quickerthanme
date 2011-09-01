@@ -77,33 +77,23 @@
                     <tr>
                         <th>Player</th>
                         {% with race.questions.all as questions %}
-                        {% for question in questions %}
-                        {% with question as the_q %}
-                        <td>#{{ forloop.counter }}</td>
-                        {% endwith %}
-                        {% endfor %}
+                          {% for question in race.questions.all %}
+                            <td>#{{ forloop.counter }}</td>
+                          {% endfor %}
                         {% endwith %}
                     </tr>
                 </thead>
                 <tbody>
-                    {% with race.results as results %}
-                    {% for outcome in results %}
-                    {% with outcome.user as user %}
+                    {% for outcome in race.outcome_set.all %}
                     <tr>
                         <th>
-                            <a href="{{ user.get_absolute_url }}">{{ user.name }}</a>
+                            <a href="{{ outcome.user.get_absolute_url }}">{{ outcome.user.name }}</a>
                         </th>
-                        {% with outcome.answers as answers %}
-                        {% for answer in answers %}
-                            {% with answer as the_a %}
-                            <td>{{ the_a.time_taken|floatformat:2 }} seconds</td>
-                            {% endwith %}
+                        {% for answer in outcome.answers %}
+                            <td>{{ answer.time_taken|floatformat:2 }} seconds</td>
                         {% endfor %}
-                        {% endwith %}
                     </tr>
-                    {% endwith %}
                     {% endfor %}
-                    {% endwith %}
                 </tbody>
             </table>
         </div>
