@@ -2,7 +2,8 @@ var app = require('./config/app')
   , nko = require('nko')('UO1b95S1RWINAw2i')
   , spawn = require('child_process').spawn
   , worker_path = require('path').join(__dirname, 'worker.js')
-
+  , env = process.env.NODE_ENV || 'local'
+  , PORT = require('./settings')[env].PORT
 
 var create_validator_server = function(port) {
   var child_env = Object.create(process.env)
@@ -31,7 +32,7 @@ var create_validator_server = function(port) {
   })
 }
 
-app.listen(process.env.NODE_ENV === 'production' ? 80 : 8000, function() {
+app.listen(PORT, function() {
   console.log('Ready');
 
   if(false)
